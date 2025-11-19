@@ -1,0 +1,70 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-28T09:18:58.786Z",
+  "id": "c8WRDSArB35l3dD5",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2d0e9769-9686-4f14-a213-9dbc6d424f53",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.gemlogin.io/api/v2/execscript",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"token\": \"aFPfO08a7AwfrJitgROnJQIns9SVg60JYiq6Ad6qzPaRwz1haQD2FC7SivTSPAJg\",\n  \"device_id\": \"2D6F1F249424721ACC1733B67BFA2378\",\n  \"profile_id\": [\n    \"2\",\n    \"3\",\n    \"6\",\n    \"7\",\n    \"8\"\n  ],\n  \"workflow_id\": \"hm0AVtlBWByVsCNZzLH1T\",\n  \"parameter\": {},\n  \"soft_id\": \"1\",\n  \"close_browser\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c2853ebd-7180-4fd1-a387-c9a6ccfeee61",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-28T09:18:58.795Z",
+      "updatedAt": "2025-10-28T09:18:58.795Z",
+      "role": "workflow:owner",
+      "workflowId": "c8WRDSArB35l3dD5",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-29T08:25:27.000Z",
+  "versionId": "bbad1fc9-8360-4d88-9769-dedf8e9d82ff"
+}
