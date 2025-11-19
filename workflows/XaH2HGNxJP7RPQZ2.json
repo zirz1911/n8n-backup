@@ -1,0 +1,306 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Prepare Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Prompt": {
+      "main": [
+        [
+          {
+            "node": "Extract URL (regex)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChatGPT: Parse & Fallback": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract URL (regex)": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "ChatGPT: Parse & Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-27T12:51:55.745Z",
+  "id": "XaH2HGNxJP7RPQZ2",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Intent-match",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai/intent",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -720,
+        80
+      ],
+      "id": "ffb4f026-82ba-4910-8b92-7ebc3ff87b1c",
+      "name": "Webhook",
+      "webhookId": "731865e3-3a19-47d0-a2b7-f3f0f2603ea2"
+    },
+    {
+      "parameters": {
+        "url": "http://192.168.1.250:5173/script.json",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -304,
+        80
+      ],
+      "id": "4a66be2b-639a-4b35-9a30-a6c77c078b52",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ดึง item จาก node ต้นทางโดยอ้าง \"ชื่อ node\" โดยตรง\nconst webhookItems = $items('Webhook', 0) || [];        // item จาก Webhook (ปกติ 1 ชิ้น)\nconst httpItems     = $items('HTTP Request', 0) || [];  // items จาก HTTP Request (หลายชิ้น)\n\nconst webhookJson = webhookItems[0]?.json || {};\nconst userText =\n  webhookJson.body?.text ??\n  webhookJson.query?.text ??\n  webhookJson.text ??\n  \"\";\n\n// รวมสคริปต์ทั้งหมดจาก HTTP Request\nconst scriptsArr = httpItems.map(i => i.json);\n\n// ย่อฟิลด์สำหรับส่งให้โมเดล\nconst scripts = (scriptsArr || []).map(s => ({\n  id: s.id,\n  name: s.name,\n  summary: s.summary,\n  tags: s.tags,\n  target: s.target,\n  language: s.language,\n}));\n\nreturn [{ userText, scripts }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        80
+      ],
+      "id": "4e969aed-fb20-4caf-a267-ce11225dad6c",
+      "name": "Prepare Prompt"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ... โค้ดส่วนบนเหมือนเวอร์ชันที่คุณใช้\n\n// ดึง context\nconst prep = $items('Prepare Prompt', 0, 0)?.json || {};\nconst scripts = Array.isArray(prep.scripts) ? prep.scripts : [];\nconst userText = prep.userText || \"\";\n\n// เอา regex URL ที่โหนดก่อนหน้าหาเจอ\nconst regexUrl = $json?.regex_extracted?.url;\n\n// ดึงผลจาก OpenAI (ย่อ)\nconst content = $json?.message?.content; \nlet ai = (content && typeof content === 'object') ? content : null;\n\nlet matches = [];\nlet required = [];\nlet target = undefined;\nlet extracted = {};\nlet perScript = [];\n\n// ถ้า AI มีผล\nif (ai && Array.isArray(ai.matches)) {\n  matches = ai.matches.map(m => ({ id: m.id, score: Number(m.score)||0, why: m.why || \"\" }));\n  required = Array.isArray(ai.required_params_suggested) ? ai.required_params_suggested : [];\n  target = typeof ai.target_suggested === 'string' ? ai.target_suggested : undefined;\n  extracted = (ai.extracted_params && typeof ai.extracted_params === 'object') ? ai.extracted_params : {};\n  perScript = Array.isArray(ai.per_script_params) ? ai.per_script_params : [];\n} else {\n  // Fallback เฉพาะตอน AI error จริง ๆ\n  function tokenize(t){ return (t||\"\").toLowerCase().split(/[^\\p{L}\\p{N}]+/u).filter(Boolean); }\n  function scoreLocal(s, q){\n    const qt = tokenize(q);\n    const bag = tokenize(`${s.name} ${s.summary} ${(s.tags||[]).join(\" \")} ${s.target} ${s.language}`);\n    if (!qt.length || !bag.length) return 0;\n    const set = new Set(bag);\n    let hit = 0; for (const x of qt) if (set.has(x)) hit++;\n    return Math.min(1, hit/qt.length);\n  }\n  matches = scripts\n    .map(s => ({ id: s.id, score: scoreLocal(s, userText), why: \"local overlap\" }))\n    .sort((a,b)=> b.score - a.score)\n    .slice(0,5)\n    .filter(x => x.score > 0);\n}\n\n// ถ้า AI ไม่ส่ง url มา แต่ regex มี → เติมให้\nif ((!extracted || !extracted.url) && regexUrl) {\n  extracted = { ...(extracted || {}), url: regexUrl };\n  // ถ้ามี matches อย่างน้อย 1 ตัว ให้ผูก url ให้สคริปต์อันดับแรกด้วย\n  if (matches.length > 0) {\n    perScript = perScript || [];\n    const topId = matches[0].id;\n    const already = perScript.find(p => p.id === topId);\n    if (already) {\n      already.params = { ...(already.params||{}), url: regexUrl };\n    } else {\n      perScript.push({ id: topId, params: { url: regexUrl }});\n    }\n  }\n}\n\nreturn [{\n  matches,\n  required_params_suggested: required,\n  target_suggested: target,\n  extracted_params: extracted,\n  per_script_params: perScript\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        16,
+        304
+      ],
+      "id": "2f89243f-2656-4a95-a77b-bead88583690",
+      "name": "ChatGPT: Parse & Fallback"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -512,
+        80
+      ],
+      "id": "5d4cd9ca-d460-4378-a54c-a868f9e263da",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{$json}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        224,
+        304
+      ],
+      "id": "bcfba4ab-ac9f-4a94-b8b2-edf9b1cbf61a",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "content": "## Intent Match from User",
+        "height": 672,
+        "width": 1408,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        -32
+      ],
+      "id": "6c8dd78e-71fb-4767-9fcf-f1702e8cfa27",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $json || {};\nconst txt = String(input.userText || \"\");\n\nconst m = txt.match(/((https?:\\/\\/)?(www\\.)?[\\w.-]+\\.[a-z]{2,}(\\/\\S*)?)/i);\nlet url = m ? m[0] : null;\n// เติม scheme ถ้าขาด\nif (url && !/^https?:\\/\\//i.test(url)) url = \"https://\" + url;\n\n// แนบผลไว้ใน payload ส่งต่อไปด้วย\nreturn [{\n  ...input,\n  regex_extracted: { url },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -512,
+        304
+      ],
+      "id": "55f3cf4f-74c6-467e-9447-dec2646b16c8",
+      "name": "Extract URL (regex)"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=User text:\n{{$json.userText}}\n\nCatalog (JSON array):\n{{ JSON.stringify($json.scripts) }}\n\nTask:\nReturn ONLY a JSON object with this schema:\n{\n  \"matches\": [ { \"id\": \"string\", \"score\": 0..1, \"why\": \"string\" } ],\n  \"required_params_suggested\": [\"string\"],\n  \"target_suggested\": \"gemlogin|n8n|gemphonefarm|null\",\n  \"extracted_params\": { \"url\": \"string|null\" },\n  \"per_script_params\": [ { \"id\": \"string\", \"params\": { \"url\": \"string\" } } ]\n}\nRules:\n- Include only relevant scripts (or matches: [] if none).\n- Do not invent IDs.\n- If user text contains a URL, put it in extracted_params.url and per_script_params for the matched script.\n- Respond with JSON only. No extra text, no code fences.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -304,
+        304
+      ],
+      "id": "9492639b-2e7a-42e1-bcf7-61934cec6089",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -368,
+        496
+      ],
+      "id": "7b64d60e-6aba-47a6-93d8-82f0f13b3316",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        496
+      ],
+      "id": "f57d92e8-bc5b-44dd-9767-1921d1bf4ff9",
+      "name": "MongoDB Chat Memory",
+      "credentials": {
+        "mongoDb": {
+          "id": "dpp3oNAOtxvs59Hj",
+          "name": "MongoDB account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-27T12:51:55.748Z",
+      "updatedAt": "2025-08-27T12:51:55.748Z",
+      "role": "workflow:owner",
+      "workflowId": "XaH2HGNxJP7RPQZ2",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-21T08:47:18.000Z",
+  "versionId": "31196de0-8968-415f-b393-205d48aa3198"
+}
