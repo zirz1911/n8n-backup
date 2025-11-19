@@ -1,0 +1,28 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-11-14T09:49:18.748Z",
+  "id": "Cms3iAN6dBAl2nmA",
+  "isArchived": false,
+  "meta": null,
+  "name": "Gem Run Workflow",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-14T09:49:18.756Z",
+      "updatedAt": "2025-11-14T09:49:18.756Z",
+      "role": "workflow:owner",
+      "workflowId": "Cms3iAN6dBAl2nmA",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-14T09:49:18.748Z",
+  "versionId": "df744408-717a-4e88-bd20-bb66bbfeb081"
+}
