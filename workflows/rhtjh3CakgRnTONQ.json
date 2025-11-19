@@ -1,0 +1,199 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set Vars",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Vars": {
+      "main": [
+        [
+          {
+            "node": "HTTP Candles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Candles": {
+      "main": [
+        [
+          {
+            "node": "Make Signal (EMA/ATR + Order Type)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Make Signal (EMA/ATR + Order Type)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-07T13:29:14.493Z",
+  "id": "rhtjh3CakgRnTONQ",
+  "isArchived": false,
+  "meta": null,
+  "name": "MT5 New",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "mt5-signal",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "93f056c8-0864-45e7-b764-e261f03778e3",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        64
+      ],
+      "webhookId": "9e574a7b-4d68-47fa-8d7e-3b9a8318e36c"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "BRIDGE_URL",
+              "value": "http://192.168.1.198:5006"
+            },
+            {
+              "name": "BRIDGE_TOKEN"
+            },
+            {
+              "name": "SYMBOL",
+              "value": "XAUUSD"
+            },
+            {
+              "name": "TIMEFRAME",
+              "value": "M5"
+            },
+            {
+              "name": "BARS",
+              "value": "200"
+            },
+            {
+              "name": "MODE",
+              "value": "market"
+            },
+            {
+              "name": "LOT",
+              "value": "0.10"
+            },
+            {
+              "name": "OFFSET_POINTS",
+              "value": "50"
+            },
+            {
+              "name": "SL_ATR_MULT",
+              "value": "1.2"
+            },
+            {
+              "name": "TP_ATR_MULT",
+              "value": "2.0"
+            },
+            {
+              "name": "POINT",
+              "value": "0.1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bb2b4d22-a35b-429e-ad2e-7404b4adab11",
+      "name": "Set Vars",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"BRIDGE_URL\"]}}/candles?symbol={{$json[\"SYMBOL\"]}}&timeframe={{$json[\"TIMEFRAME\"]}}&bars={{$json[\"BARS\"]}}",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "X-Token",
+              "value": "={{$json[\"BRIDGE_TOKEN\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "c249f28b-b4e0-46d5-96b1-97cb14700c16",
+      "name": "HTTP Candles",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        112,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        576,
+        64
+      ],
+      "id": "aecb7190-fdaa-47ca-a623-ca01001b9c41",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ---------- CONFIG (รับค่าจาก Set Vars ถ้ามี) ----------\nconst cfg = {\n  symbol: $json.SYMBOL || 'XAUUSD',\n  lot: parseFloat($json.LOT || '0.10'),\n  strategy: ($json.STRATEGY || 'trend').toLowerCase(), // trend | flat | breakout\n  mode: ($json.MODE || 'market').toLowerCase(),        // market | stop | limit\n  timeframe: $json.TIMEFRAME || 'M15',\n\n  // risk & calc\n  point: parseFloat($json.POINT || '0.1'),            // ขนาดจุด XAUUSD ส่วนใหญ่ 0.1\n  slK: parseFloat($json.SL_ATR_MULT || '1.2'),\n  tpK: parseFloat($json.TP_ATR_MULT || '2.0'),\n  minAtrPts: parseInt($json.MIN_ATR_POINTS || '50', 10),\n  offsetPts: parseInt($json.OFFSET_POINTS || '50', 10),\n\n  // filters (ทางเลือก)\n  useSpreadFilter: ($json.USE_SPREAD_FILTER || 'false').toString().toLowerCase() === 'true',\n  maxSpreadPts: parseInt($json.MAX_SPREAD_POINTS || '80', 10),\n};\n\n// ---------- INPUT ----------\nconst payload = $item(0).$node['HTTP Candles'].json;   // จาก node HTTP Candles\nconst data = payload?.data;\nif (!payload?.ok || !data?.bars || data.bars.length < 60) {\n  return [{ json: { error: 'not enough bars', got: (data?.bars?.length || 0) } }];\n}\nconst bars = data.bars;\n\n// ---------- HELPERS ----------\nfunction ema(arr, span) {\n  const k = 2 / (span + 1);\n  let e = arr[0]; const out = [e];\n  for (let i = 1; i < arr.length; i++) { e = arr[i] * k + e * (1 - k); out.push(e); }\n  return out;\n}\n\nfunction atr(rows, n) {\n  const tr = [];\n  let prevClose = Number(rows[0].close);\n  for (const r of rows) {\n    const high = Number(r.high), low = Number(r.low), close = Number(r.close);\n    const a = Math.abs(high - low);\n    const b = Math.abs(high - prevClose);\n    const c = Math.abs(low - prevClose);\n    tr.push(Math.max(a, b, c));\n    prevClose = close;\n  }\n  const out = []; let s = 0;\n  for (let i = 0; i < tr.length; i++) { s += tr[i]; if (i >= n) s -= tr[i - n]; out.push(i >= n - 1 ? s / n : tr[i]); }\n  return out;\n}\n\nfunction boll(rows, period = 20, dev = 2) {\n  const closes = rows.map(r => Number(r.close));\n  const mid = [];\n  const std = [];\n  let sum = 0, sumSq = 0;\n  for (let i = 0; i < closes.length; i++) {\n    sum += closes[i]; sumSq += closes[i]*closes[i];\n    if (i >= period) { sum -= closes[i-period]; sumSq -= closes[i-period]*closes[i-period]; }\n    const n = Math.min(i+1, period);\n    const mean = sum / n;\n    const variance = Math.max(sumSq/n - mean*mean, 0);\n    mid.push(mean);\n    std.push(Math.sqrt(variance));\n  }\n  return { mid, up: mid.map((m,i)=>m+dev*std[i]), dn: mid.map((m,i)=>m-dev*std[i]) };\n}\n\n// ---------- INDICATORS ----------\nconst closes = bars.map(b => Number(b.close));\nconst ema20 = ema(closes, 20);\nconst ema50 = ema(closes, 50);\nconst ATR = atr(bars, 14);\nconst BB  = boll(bars, 20, 2);\n\nconst last = bars[bars.length - 1];\nconst prev = bars[bars.length - 2];\nconst priceNow = Number(last.close);\nconst atrPts = Math.max(Math.round(ATR[ATR.length - 1] / cfg.point), cfg.minAtrPts);\n\n// ---------- STRATEGIES ----------\nlet side = 'none';\nlet reason = '';\n\nif (cfg.strategy === 'trend') {\n  if (ema20[ema20.length-1] > ema50[ema50.length-1]) { side='buy';  reason='trend ema20>ema50'; }\n  else if (ema20[ema20.length-1] < ema50[ema50.length-1]) { side='sell'; reason='trend ema20<ema50'; }\n}\nelse if (cfg.strategy === 'flat') {\n  const bbUp = BB.up[BB.up.length-1], bbDn = BB.dn[BB.dn.length-1];\n  if (priceNow > bbUp) { side='sell'; reason='flat price>BBup'; }\n  else if (priceNow < bbDn) { side='buy'; reason='flat price<BBdn'; }\n  else { side='none'; reason='flat inside band'; }\n}\nelse if (cfg.strategy === 'breakout') {\n  const hh = Number(prev.high), ll = Number(prev.low);\n  if (priceNow > hh) { side='buy'; reason='breakout above prevHigh'; }\n  else if (priceNow < ll) { side='sell'; reason='breakout below prevLow'; }\n}\n\n// ---------- SL/TP ----------\nlet sl = 0, tp = 0;\nif (side === 'buy') {\n  sl = priceNow - atrPts * cfg.slK * cfg.point;\n  tp = priceNow + atrPts * cfg.tpK * cfg.point;\n} else if (side === 'sell') {\n  sl = priceNow + atrPts * cfg.slK * cfg.point;\n  tp = priceNow - atrPts * cfg.tpK * cfg.point;\n}\n\n// ---------- ORDER TYPE ----------\nlet order_type = 'market';\nlet price = 0;\n\nif (cfg.mode === 'stop' && side !== 'none') {\n  // Breakout stop: buy เหนือ high / sell ต่ำกว่า low ของแท่งก่อนหน้า + offset\n  if (side === 'buy')  { order_type = 'buystop';  price = Number(prev.high) + cfg.offsetPts*cfg.point; }\n  if (side === 'sell') { order_type = 'sellstop'; price = Number(prev.low)  - cfg.offsetPts*cfg.point; }\n}\n\nif (cfg.mode === 'limit' && side !== 'none') {\n  // Pullback limit: buy ที่ต่ำกว่า now / sell ที่สูงกว่า now ด้วย offset\n  if (side === 'buy')  { order_type = 'buylimit';  price = priceNow - cfg.offsetPts*cfg.point; }\n  if (side === 'sell') { order_type = 'selllimit';  price = priceNow + cfg.offsetPts*cfg.point; }\n}\n\n// ---------- SPREAD FILTER (ถ้าอยากใช้ ต้องป้อนค่า maxSpreadPts มาจากที่อื่น) ----------\nif (cfg.useSpreadFilter && $json.spread_points && Number($json.spread_points) > cfg.maxSpreadPts) {\n  side = 'none'; reason += ' | blocked:spread';\n}\n\n// ---------- OUTPUT ----------\nconst order = {\n  symbol: cfg.symbol,\n  side,\n  order_type,\n  price: Number((price || 0).toFixed(2)),\n  sl: Number(sl.toFixed(2)),\n  tp: Number(tp.toFixed(2)),\n  lot: cfg.lot,\n  meta: {\n    source: 'n8n',\n    timeframe: cfg.timeframe,\n    strategy: cfg.strategy,\n    reason,\n    atr_points: atrPts\n  }\n};\n\nreturn [{ json: { order, debug: { cfg, last, prev, atrPts, priceNow } } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        64
+      ],
+      "id": "64ac84af-0d38-4720-b9cb-1c93b2982633",
+      "name": "Make Signal (EMA/ATR + Order Type)"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-07T13:29:14.500Z",
+      "updatedAt": "2025-10-07T13:29:14.500Z",
+      "role": "workflow:owner",
+      "workflowId": "rhtjh3CakgRnTONQ",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-07T14:11:28.000Z",
+  "versionId": "1a8ce924-c05d-499d-a123-b2b499284ba9"
+}
