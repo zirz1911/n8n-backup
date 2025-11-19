@@ -1,0 +1,90 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-27T12:41:48.156Z",
+  "id": "FZF0vYTjyK2nCwWs",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "intent-match",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "serchme",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -64,
+        32
+      ],
+      "id": "7be5a8e1-7ffb-4215-9a8e-70e52a5d0f15",
+      "name": "Webhook",
+      "webhookId": "4b3a4cd6-41c0-4079-aa23-667842c963d8"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=ผู้ใช้บรรยายความต้องการ: {{$json[\"text\"]}}\nคุณมีรายการสคริปต์ใน dataset (ส่งมาผ่าน Input node ก่อนหน้านี้)\nงานของคุณ:\n- เลือกสคริปต์ที่ตรงหรือใกล้เคียง\n- แนะนำ target (gemlogin/n8n/gemphonefarm)\n- แนะนำ parameter ที่ควรกรอกเพิ่ม\nให้ตอบใน JSON:\n{\n  \"matches\": [{ \"id\": \"S-001\", \"score\": 0.9, \"why\": \"...\" }],\n  \"required_params_suggested\": [\"url\"],\n  \"target_suggested\": \"gemlogin\"\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        144,
+        32
+      ],
+      "id": "201de5d9-ab72-47a3-b74c-97ba9ba18b98",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-27T12:41:48.165Z",
+      "updatedAt": "2025-08-27T12:41:48.165Z",
+      "role": "workflow:owner",
+      "workflowId": "FZF0vYTjyK2nCwWs",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-27T12:49:07.000Z",
+  "versionId": "27acc5e6-ddfe-4922-af61-97a1b6a7eec7"
+}
