@@ -1,0 +1,1075 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Prompt Suno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gen Song": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Get Song",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Song": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download Music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Music": {
+      "main": [
+        [
+          {
+            "node": "Upload file1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Gen Song",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Prompt Suno": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Music1": {
+      "main": [
+        [
+          {
+            "node": "Upload file2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file1": {
+      "main": [
+        [
+          {
+            "node": "Download Music1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file2": {
+      "main": [
+        [
+          {
+            "node": "Update Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChatGPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-17T12:44:55.718Z",
+  "id": "oknb8icAN317IwUb",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Generate Song via Suno",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -3920,
+        -328
+      ],
+      "id": "aa0be134-965c-4057-812a-3fddab16bfce",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": \"{{ $json.Prompt }}\",\n  \"style\": \"{{ $json.Style }}\",\n  \"title\": \"{{ $json.Title }}\",\n  \"customMode\": {{ $json.CustomMode }},\n  \"instrumental\": {{ $json.Instrumental }},\n  \"model\": \"{{ $json.Model }}\",\n  \"callBackUrl\": \"{{ $json.CallBackUrl }}\",\n  \"negativeTags\": \"{{ $json.NegativeTags }}\",\n  \"vocalGender\": \"{{ $json.VocalGender }}\",\n  \"styleWeight\": {{ $json.StyleWeight }},\n  \"weirdnessConstraint\": {{ $json.WeirdnessConstraint }},\n  \"audioWeight\": {{ $json.AudioWeight }},\n  \"personaId\": \"{{ $json.PersonaId }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -3248,
+        -328
+      ],
+      "id": "0bbe34de-baa9-4401-95fb-dca0f129358f",
+      "name": "Gen Song",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/generate/record-info",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2800,
+        -336
+      ],
+      "id": "df011af2-a463-4836-b330-08dab6d7a1d6",
+      "name": "Get Song",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -3024,
+        -328
+      ],
+      "id": "6e9ce40a-e963-4a03-a551-956e41e6d32c",
+      "name": "Wait1",
+      "webhookId": "5168a277-5256-44cc-98c7-6384b794efb0"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.status }}",
+                    "rightValue": "=PENDING",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "80f66826-1880-480b-810e-5a086031600d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PENDING"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa7e806e-9ddf-4886-b344-bf20d7762082",
+                    "leftValue": "={{ $json.data.status }}",
+                    "rightValue": "TEXT_SUCCESS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TEXT_SUCCESS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "39e8cdcb-3f17-4910-ba84-73d93536ceb8",
+                    "leftValue": "={{ $json.data.status }}",
+                    "rightValue": "FIRST_SUCCESS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FIRST_SUCCESS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5601b919-e71b-4344-a499-d878ff8dde17",
+                    "leftValue": "={{ $json.data.status }}",
+                    "rightValue": "SUCCESS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SUCCESS"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -2576,
+        -360
+      ],
+      "id": "1a938796-3acb-4991-a655-c61e0925e40d",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "={{ $json.data.response.sunoData[0].sourceAudioUrl }}\n",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "0d62ff8e-60b2-4e19-bae4-d7b2fb953570",
+      "name": "Download Music",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -2352,
+        -384
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "={{ $('Download Music').item.json.data.response.sunoData[1].audioUrl }}",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "b566750a-446f-4431-a93b-34611d27ff28",
+      "name": "Download Music1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -2352,
+        -224
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bf1b577c-6f03-441d-a9c9-db33b52a2325",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "Pending",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3472,
+        -328
+      ],
+      "id": "e3640c1c-6753-4daa-96f4-2bfb7ff7a80f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 621247393,
+          "mode": "list",
+          "cachedResultName": "suno",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=621247393"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3696,
+        -328
+      ],
+      "id": "08a02780-ca13-4562-b745-dcf771014e96",
+      "name": "Get Prompt Suno",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.data.response.sunoData[0].title }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1YvrzfUDcJMfO3Up0SoJvOSECGciMlA2H",
+          "mode": "list",
+          "cachedResultName": "suno-song",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1YvrzfUDcJMfO3Up0SoJvOSECGciMlA2H"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2128,
+        -384
+      ],
+      "id": "6169c931-8519-4eb3-ad0f-59108a20c708",
+      "name": "Upload file1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Download Music').item.json.data.response.sunoData[1].title }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1YvrzfUDcJMfO3Up0SoJvOSECGciMlA2H",
+          "mode": "list",
+          "cachedResultName": "suno-song",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1YvrzfUDcJMfO3Up0SoJvOSECGciMlA2H"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2128,
+        -224
+      ],
+      "id": "ad035c25-0efe-49df-bfe6-5e177ba9508d",
+      "name": "Upload file2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 621247393,
+          "mode": "list",
+          "cachedResultName": "suno",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=621247393"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $('Get Prompt Suno').item.json.Title }}",
+            "status": "Generated"
+          },
+          "matchingColumns": [
+            "Title"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Style",
+              "displayName": "Style",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CustomMode",
+              "displayName": "CustomMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Instrumental",
+              "displayName": "Instrumental",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Model",
+              "displayName": "Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CallBackUrl",
+              "displayName": "CallBackUrl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NegativeTags",
+              "displayName": "NegativeTags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "VocalGender",
+              "displayName": "VocalGender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "StyleWeight",
+              "displayName": "StyleWeight",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WeirdnessConstraint",
+              "displayName": "WeirdnessConstraint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "AudioWeight",
+              "displayName": "AudioWeight",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PersonaId",
+              "displayName": "PersonaId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1888,
+        -320
+      ],
+      "id": "db0363c8-9837-4116-915b-f468b4991f8d",
+      "name": "Update Status",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 621247393,
+          "mode": "list",
+          "cachedResultName": "suno",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=621247393"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $json.title }}",
+            "status": "Pending",
+            "prompt": "={{ $json.prompt }}",
+            "style": "={{ $json.style }}",
+            "customMode": "={{ $json.customMode }}",
+            "instrumental": "={{ $json.instrumental }}",
+            "model": "={{ $json.model }}",
+            "callBackUrl": "={{ $json.callBackUrl }}",
+            "negativeTags": "={{ $json.negativeTags }}",
+            "vocalGender": "={{ $json.vocalGender }}",
+            "styleWeight": "={{ $json.styleWeight }}",
+            "weirdnessConstraint": "={{ $json.weirdnessConstraint }}",
+            "audioWeight": "={{ $json.audioWeight }}",
+            "personaId": "={{ $json.personaId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "prompt",
+              "displayName": "prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "style",
+              "displayName": "style",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customMode",
+              "displayName": "customMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "instrumental",
+              "displayName": "instrumental",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "model",
+              "displayName": "model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "callBackUrl",
+              "displayName": "callBackUrl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "negativeTags",
+              "displayName": "negativeTags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "vocalGender",
+              "displayName": "vocalGender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "styleWeight",
+              "displayName": "styleWeight",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "weirdnessConstraint",
+              "displayName": "weirdnessConstraint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "audioWeight",
+              "displayName": "audioWeight",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "personaId",
+              "displayName": "personaId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2240,
+        -1008
+      ],
+      "id": "c25f2305-1c20-48a0-a0f0-4ced200e81ed",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.songs",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -2480,
+        -1008
+      ],
+      "id": "c280505d-4875-4997-b666-080269e699b9",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"output\": {\n    \"songs\": [\n      {\n        \"prompt\": \"A soft acoustic easy-listening track with gentle English vocals and a calm evening mood.\",\n        \"style\": \"easy-listening, soft-pop, chill acoustic\",\n        \"title\": \"Quiet Reflections\",\n        \"customMode\": true,\n        \"instrumental\": false,\n        \"model\": \"V4_5PLUS\",\n        \"callBackUrl\": \"https://api.example.com/callback\",\n        \"negativeTags\": \"rock, heavy metal, aggressive drums\",\n        \"vocalGender\": \"f\",\n        \"styleWeight\": 0.6,\n        \"weirdnessConstraint\": 0.55,\n        \"audioWeight\": 0.7,\n        \"personaId\": \"persona_easylistening_01\"\n      }\n    ]\n  }\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -2672,
+        -800
+      ],
+      "id": "7a149ac2-e625-4bd6-9269-ffb09218347e",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2896,
+        -800
+      ],
+      "id": "845136a7-9137-4078-9245-f353d0393c3d",
+      "name": "ChatGPT",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an AI music prompt designer for a generative music model.\n\nCRITICAL RULES (must follow 100%):\n1. You MUST output **only one single JSON object**.\n2. Inside that JSON, there must be a field named \"output\".\n3. Inside \"output\", there must be a field named \"songs\".\n4. \"songs\" MUST be an array containing EXACTLY 10 song objects.\n5. DO NOT output multiple JSON objects.\n6. DO NOT output raw objects separated by newlines.\n7. DO NOT output text before or after the JSON.\n8. DO NOT escape quotes (no backslashes). Use normal JSON only.\n\nYour task:\nGenerate 10 unique \"easy-listening\" music generation requests.\n\nEach song must follow this structure:\n\n{\n  \"prompt\": \"string\",\n  \"style\": \"string\",\n  \"title\": \"string\",\n  \"customMode\": true,\n  \"instrumental\": false,\n  \"model\": \"V4_5PLUS\",\n  \"callBackUrl\": \"https://api.example.com/callback\",\n  \"negativeTags\": \"rock, heavy metal, aggressive drums\",\n  \"vocalGender\": \"m or f\",\n  \"styleWeight\": number between 0.5 and 0.8,\n  \"weirdnessConstraint\": number between 0.5 and 0.8,\n  \"audioWeight\": number between 0.5 and 0.8,\n  \"personaId\": \"persona_easylistening_01\"\n}\n\n### REQUIRED OUTPUT FORMAT:\nReturn ONLY:\n\n{\n  \"output\": {\n    \"songs\": [\n       { ...song1... },\n       { ...song2... },\n       ...\n       { ...song10... }\n    ]\n  }\n}\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -2832,
+        -1008
+      ],
+      "id": "e0366968-c3c5-4ab1-8510-f77f9d03d359",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "content": "## Generate Suno\n**เช็ค Status บน Sheet แล้วนำมาเจน",
+        "height": 624,
+        "width": 2416
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4016,
+        -528
+      ],
+      "id": "b54bda11-756d-4696-bd38-624a8c59f434",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Generate Prompt\n**Gen Prompt 10 เพลง เก็บไปไว้ Sheet",
+        "height": 624,
+        "width": 2416,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4016,
+        -1152
+      ],
+      "id": "d920a3c4-c2ff-4086-819b-8f7ce062aec3",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-17T12:44:55.725Z",
+      "updatedAt": "2025-11-17T12:44:55.725Z",
+      "role": "workflow:owner",
+      "workflowId": "oknb8icAN317IwUb",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-19T15:00:07.000Z",
+  "versionId": "a95353a7-daf7-4c31-a849-3888e68c88b3"
+}
