@@ -1,0 +1,737 @@
+{
+  "active": true,
+  "connections": {
+    "Line Messaging Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Line Messaging",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Line Messaging Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Line Messaging1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Signature (optional)": {
+      "main": [
+        [
+          {
+            "node": "Map Event → user_key",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Event → user_key": {
+      "main": [
+        [
+          {
+            "node": "Memory: Append",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memory: Append": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Line Messaging Trigger2": {
+      "main": [
+        [
+          {
+            "node": "Verify Signature (optional)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Line Messaging2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-19T13:00:21.467Z",
+  "id": "EHQnoCmPnX7RbpxG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "LINE → Memory → RAG → Reply",
+  "nodes": [
+    {
+      "parameters": {
+        "events": [
+          "message"
+        ]
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessagingTrigger",
+      "typeVersion": 1,
+      "position": [
+        16,
+        272
+      ],
+      "id": "7ae448aa-aff3-45f8-8378-ad11a8e76767",
+      "name": "Line Messaging Trigger",
+      "webhookId": "e6e9ccf2-ce4f-4d84-96a9-c3ed5f9acedc",
+      "alwaysOutputData": true,
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "Qf0jKDQhHvuTTp27",
+          "name": "Line Messaging account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -160,
+        -416
+      ],
+      "id": "c182781b-91fa-452c-897a-75e242d4d6fb",
+      "name": "AI Agent",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -96,
+        -240
+      ],
+      "id": "359809a4-a5bd-4870-87ce-09f8899804f4",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "replyToken": "={{ $('Line Messaging Trigger').item.json.replyToken }}",
+        "messages": {
+          "values": [
+            {
+              "text": "={{ $json.answer }}"
+            }
+          ]
+        }
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
+      "typeVersion": 1,
+      "position": [
+        704,
+        272
+      ],
+      "id": "8785e444-8923-42dc-9a01-35ef30d63745",
+      "name": "Line Messaging",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "Qf0jKDQhHvuTTp27",
+          "name": "Line Messaging account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://rag-api:8090/ingest",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer supersecret_change_me"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"documents\": [\n    { \"id\": \"doc1\", \"text\": \"คู่มือการใช้งานระบบ Gem + n8n\", \"source\": \"internal\" }\n  ]\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -400,
+        -288
+      ],
+      "id": "80668133-4dad-47a9-a318-b5968d407892",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        -352
+      ],
+      "id": "7d881a3f-20bc-4d4d-ae9f-e2ff4e01676e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://rag-api:8090/query",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer supersecret_change_me"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"={{$json.query}}\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        272
+      ],
+      "id": "087721bf-a605-4646-bf5c-25111e0bb92d",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "85be6855-f861-48de-9305-96ec39b6b93b",
+              "name": "query",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        272
+      ],
+      "id": "770f3c0b-6cd9-4bed-a296-c6b13c837aa7",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "## เอาไว้ทดลองเฉยๆ",
+        "height": 432,
+        "width": 864
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        -496
+      ],
+      "id": "2a0f4ede-3b69-4800-852a-83045413b514",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## เอาไว้รันเทสเอง\n**หากอยากกดเทส ให้เปลี่ยนจาก Active เป็น Inactive ก่อน\n**ต้องไปแก้ให้ใช้ Webhook URLs แบบ Test บน Line Developers ก่อน",
+        "height": 448,
+        "width": 1088,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        112
+      ],
+      "id": "c4cf78be-4525-4f03-bed0-edc9e5df135b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "events": [
+          "message"
+        ]
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessagingTrigger",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        272
+      ],
+      "id": "8f81165f-c99b-4a82-bfce-92427b2e6d5b",
+      "name": "Line Messaging Trigger1",
+      "webhookId": "e6e9ccf2-ce4f-4d84-96a9-c3ed5f9acedc",
+      "alwaysOutputData": true,
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "Qf0jKDQhHvuTTp27",
+          "name": "Line Messaging account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "replyToken": "={{ $('Line Messaging Trigger1').item.json.replyToken }}",
+        "messages": {
+          "values": [
+            {
+              "text": "={{ $json.answer }}"
+            }
+          ]
+        }
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        272
+      ],
+      "id": "e6f27cbb-be9c-4250-8ba0-11954d422821",
+      "name": "Line Messaging1",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "Qf0jKDQhHvuTTp27",
+          "name": "Line Messaging account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://rag-api:8090/query",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer supersecret_change_me"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"={{$json.query}}\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1616,
+        272
+      ],
+      "id": "dfc578c0-eaed-4c0b-83c2-cf9def05f12c",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "85be6855-f861-48de-9305-96ec39b6b93b",
+              "name": "query",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        272
+      ],
+      "id": "da60a033-a8fe-4201-941f-7dba0aefa71c",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "content": "## เอาไว้รันอัตโนมัติ\n**หากอยากกดเทส ให้เปลี่ยนจาก Inactive เป็น Active ก่อน\n**ต้องไปแก้ให้ใช้ Webhook URLs แบบ Productional บน Line Developers ก่อน",
+        "height": 448,
+        "width": 1088,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        112
+      ],
+      "id": "23bb3827-0b59-402d-8a9e-80f1f20b4a7a",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "functionCode": "// OPTIONAL: ตรวจลายเซ็น (ถ้าไม่ใช้ ให้ปิด node นี้)\n// ต้องเปิด Environment variables ใน n8n: LINE_CHANNEL_SECRET\nconst secret = $env.LINE_CHANNEL_SECRET;\nif (!secret) {\n  // ข้ามการตรวจ ถ้าไม่ได้ตั้งค่า\n  return $json;\n}\nconst crypto = require('crypto');\nconst signature = $headers['x-line-signature'];\nconst bodyRaw = JSON.stringify($json);\nconst calc = crypto.createHmac('sha256', secret).update(bodyRaw).digest('base64');\nif (calc !== signature) {\n  throw new Error('Invalid LINE signature');\n}\nreturn $json;\n"
+      },
+      "id": "0c41eece-190a-46c9-a21d-cb2bf723964c",
+      "name": "Verify Signature (optional)",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        240,
+        688
+      ],
+      "notesInFlow": true,
+      "notes": "ถ้า n8n ของคุณไม่อนุญาต require('crypto') ให้ปิด/ข้าม node นี้ได้"
+    },
+    {
+      "parameters": {
+        "functionCode": "const ev = $json;\nconst type = ev.source?.type;\n\nlet user_key;\nif (type === 'user') user_key = ev.source.userId;\nelse if (type === 'group') user_key = `${ev.source.groupId}:${ev.source.userId || 'unknown'}`;\nelse if (type === 'room') user_key = `${ev.source.roomId}:${ev.source.userId || 'unknown'}`;\nelse user_key = 'unknown';\n\nreturn {\n  user_key,\n  replyToken: ev.replyToken,\n  text: ev.message?.text || '',\n  raw: ev\n};"
+      },
+      "id": "02156801-3a14-4d0d-89b0-8cd4ee32f31d",
+      "name": "Map Event → user_key",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        496,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://rag-api:8090/memory/message/append",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "session_id",
+              "value": "={{ $json.user_key }}"
+            },
+            {
+              "name": "user_id",
+              "value": "={{ $json.user_key }}"
+            },
+            {
+              "name": "role",
+              "value": "user"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {}
+        }
+      },
+      "id": "6226dfd2-938f-43fc-8d97-eadadad41d4f",
+      "name": "Memory: Append",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        736,
+        688
+      ],
+      "notes": "บันทึกข้อความผู้ใช้ลง memory"
+    },
+    {
+      "parameters": {
+        "events": [
+          "message"
+        ]
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessagingTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        688
+      ],
+      "id": "51e5f70d-a283-4fe4-9b23-5f5b0e813453",
+      "name": "Line Messaging Trigger2",
+      "webhookId": "e6e9ccf2-ce4f-4d84-96a9-c3ed5f9acedc",
+      "alwaysOutputData": true,
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "Qf0jKDQhHvuTTp27",
+          "name": "Line Messaging account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "replyToken": "={{ $('Map Event → user_key').item.json.replyToken }}",
+        "messages": {
+          "values": [
+            {
+              "text": "={{ $json.answer }}"
+            }
+          ]
+        }
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
+      "typeVersion": 1,
+      "position": [
+        1424,
+        688
+      ],
+      "id": "9cbc4a2c-f434-4751-a6b0-836a697b328f",
+      "name": "Line Messaging2",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "Qf0jKDQhHvuTTp27",
+          "name": "Line Messaging account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://rag-api:8090/query",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer supersecret_change_me"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"={{$json.query}}\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        688
+      ],
+      "id": "25bffefd-da32-4505-ad21-672f5c5fd12c",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "85be6855-f861-48de-9305-96ec39b6b93b",
+              "name": "query",
+              "value": "={{ $('Map Event → user_key').item.json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        992,
+        688
+      ],
+      "id": "aab57b8a-9b3c-4d17-8e63-f7659ceb0993",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "content": "## แบบเก็บ Memory",
+        "height": 336,
+        "width": 2192
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        576
+      ],
+      "id": "51be9041-ed9a-4069-93e0-f307737bccfd",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-19T13:00:21.476Z",
+      "updatedAt": "2025-10-19T13:00:21.476Z",
+      "role": "workflow:owner",
+      "workflowId": "EHQnoCmPnX7RbpxG",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-01T12:35:42.000Z",
+  "versionId": "65949fcf-12ba-4d8a-a9a8-8288ead62e23"
+}
