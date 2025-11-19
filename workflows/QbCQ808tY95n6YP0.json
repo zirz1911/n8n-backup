@@ -1,0 +1,507 @@
+{
+  "active": false,
+  "connections": {
+    "Gen Video": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Gen Video1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gen Video1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChatGPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Gen Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-16T08:28:07.364Z",
+  "id": "QbCQ808tY95n6YP0",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Generate Video via Sora (OpenAI API)",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"sora-2-text-to-video\",\n  \"input\": {\n    \"prompt\": {{ JSON.stringify( ($json.output || '').toString().replace(/```yaml|```/g, '').trim() ) }},\n    \"aspect_ratio\": \"portrait\",\n    \"n_frames\": \"10\",\n    \"remove_watermark\": true\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1136,
+        32
+      ],
+      "id": "906c780c-32bf-435f-8ebb-95df142cf5ff",
+      "name": "Gen Video",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/jobs/recordInfo",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -720,
+        32
+      ],
+      "id": "04912766-2135-4d69-b099-7cf25b2ec768",
+      "name": "Gen Video1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -928,
+        32
+      ],
+      "id": "44bdde1e-f3d0-41b6-82e3-636297a398a2",
+      "name": "Wait",
+      "webhookId": "04d04985-16d5-4985-a978-7d2e423e874c"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "=generating",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "80f66826-1880-480b-810e-5a086031600d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Generating"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa7e806e-9ddf-4886-b344-bf20d7762082",
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "success",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Success"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -512,
+        32
+      ],
+      "id": "11595746-a818-4783-ac00-14c9a4699ce3",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "={{ JSON.parse($json[\"data\"][\"resultJson\"]).resultUrls[0] }}\n",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "1dcb88c3-08ce-41ad-aad0-198273b8732f",
+      "name": "Download Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        48
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1168,
+        -400
+      ],
+      "id": "83aa8499-d304-4bd3-a60e-67a69cdd4c63",
+      "name": "Telegram Trigger",
+      "webhookId": "ea3dc0b7-1631-4df3-bbe4-cacae32c5160",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "text": "=You are an AI product analyst.\n\nAnalyze the given product image carefully and describe all visible details.\n\nReturn the result **strictly in YAML format**, with the following structure:\n\nproduct:\n  name: <short name of the product based on the image>\n  category: <product type or category, e.g. smartphone, shoes, cosmetics, drink>\n  description: <short descriptive summary, 1–2 sentences, describing look, style, and materials>\n  color: <main visible color(s)>\n  shape: <main shape or form factor>\n  packaging: <describe packaging or container if visible>\n  brand_logo_text: <text or brand name visible, or null if none>\n  estimated_price_range: <rough guess in USD or THB>\n  aesthetic_style: <describe style: modern, minimal, luxury, eco, cute, etc.>\n  background_context: <describe the background or scene: white studio, outdoor, table, etc.>\n  potential_uses:\n    - <use case 1>\n    - <use case 2>\n    - <use case 3>\n  marketing_caption: <short catchy caption suitable for ad or TikTok description>\n\nOutput example:\n```yaml\nproduct:\n  name: \"Wireless Bluetooth Speaker\"\n  category: \"Electronics\"\n  description: \"A small cylindrical Bluetooth speaker with fabric texture and metallic rim.\"\n  color: \"Black with silver edges\"\n  shape: \"Cylinder\"\n  packaging: \"No packaging visible\"\n  brand_logo_text: \"SONY\"\n  estimated_price_range: \"50–80 USD\"\n  aesthetic_style: \"Modern and minimal\"\n  background_context: \"White background studio lighting\"\n  potential_uses:\n    - \"Listening to music outdoors\"\n    - \"Watching movies with better sound\"\n    - \"Decor for home workspace\"\n  marketing_caption: \"Feel the beat anywhere — compact power in your palm.\"\n",
+        "imageUrls": "={{ $json.webContentLink }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -544,
+        -400
+      ],
+      "id": "6f2d73cb-4ce5-4b7b-ace9-b440b551bee5",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Telegram Trigger').item.json.message.caption }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/0/folders/1WMxPRv94OmDJ7xNBdy8Ogw6DRjJ8Zsiu",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -768,
+        -400
+      ],
+      "id": "1dd56cad-cef4-4b1a-aa3c-fc8331aae5dc",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.photo[3].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -960,
+        -400
+      ],
+      "id": "211ef464-7eed-4696-9193-07aeea514953",
+      "name": "Get a file",
+      "webhookId": "41290621-b4a1-424e-9f3b-dd0626d6f56f",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=คุณเป็นผู้กำกับคอนเทนต์และผู้สร้างวิดีโอสั้นสำหรับรีวิวสินค้า\n\nเป้าหมาย: สร้างแนวคิดและสคริปต์สำหรับวิดีโอที่มีความสมจริง เหมือนคนทั่วไปถ่ายด้วยมือถือ  \nพูด **ภาษาไทยทั้งหมด**  \n⚠️ สำคัญ: วิดีโอต้องเป็น “ภาพวิดีโอล้วน” — **ห้ามมีข้อความบนหน้าจอ** เช่น title, caption, subtitle, สติ๊กเกอร์, watermark, โลโก้ หรือข้อความกราฟิกใด ๆ\n\nใช้ข้อมูล YAML ของสินค้าในการสร้างวิดีโอรีวิวที่เป็นธรรมชาติ เหมือนคนทั่วไปพูดถึงสินค้าจริง ๆ\n\n### ข้อมูลนำเข้า\n{{ $json.content }}\n\n### รูปแบบผลลัพธ์ (YAML เท่านั้น)\n```yaml\nvideo_plan:\n  title: <ชื่อคลิป (ไว้ใช้ภายใน ไม่ต้องแสดงในวิดีโอ)>\n  target_audience: <กลุ่มเป้าหมาย>\n  setting: <สถานที่ถ่าย เช่น ห้องครัว, โต๊ะทำงาน, นอกบ้าน>\n  camera_style: <เช่น มือถือถือเอง, ตั้งขาตั้ง, POV>\n  mood_tone: <โทนวิดีโอ: ชิว / เป็นกันเอง / รีวิวจริง / ใช้งานจริง>\n  duration_sec: <ระยะเวลาโดยประมาณ>\n  include_text_overlays: false\n  script_lines:\n    - scene: 1\n      camera_action: <อธิบายการเคลื่อนไหวของกล้องหรือมือ>\n      visual_focus: <สิ่งที่กล้องเน้นให้เห็น>\n      spoken_words: <คำพูดภาษาไทยสั้นๆ ธรรมชาติ เหมือนพูดจริงในชีวิตประจำวัน>\n    - scene: 2\n      camera_action: <...>\n      visual_focus: <...>\n      spoken_words: <...>\n    - scene: 3\n      camera_action: <...>\n      visual_focus: <...>\n      spoken_words: <...>\n  music_suggestion: <แนวดนตรี เช่น ชิว / โฆษณาเบาๆ / สนุกสนาน>\n  t2v_prompt: >\n    บรรยายภาพรวมของแต่ละซีนและการเคลื่อนไหวของกล้องเป็นภาษาอังกฤษสั้น ๆ\n    เช่น \"A handheld phone video showing a person using a white tumbler outdoors in soft sunlight,\n    cinematic natural light, realistic texture, no text on screen, no captions, no stickers.\"\n    ห้ามมีข้อความหรือกราฟิกบนจอทุกประเภท\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -336,
+        -400
+      ],
+      "id": "f171098c-16e9-4062-9f77-f0464ba8a526",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -400,
+        -208
+      ],
+      "id": "82949d44-efe5-479c-8349-efb6ceac6b69",
+      "name": "ChatGPT",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        -128,
+        -208
+      ],
+      "id": "580f94ce-84b7-4bc2-9fcd-9c431ef3b209",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "content": "## วิเคราะห์รูปภาพ แล้วนำไปสร้าง Prompt\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/sticky-notes/)",
+        "height": 416,
+        "width": 1232,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1232,
+        -480
+      ],
+      "id": "b900a58f-323e-4b3e-9b7f-e31e76d961de",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Text to video by Sora AI\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/sticky-notes/)",
+        "height": 320,
+        "width": 1232,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1232,
+        -64
+      ],
+      "id": "a5281203-e56c-424b-a47b-425881b612f3",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-16T08:28:07.371Z",
+      "updatedAt": "2025-11-16T08:28:07.371Z",
+      "role": "workflow:owner",
+      "workflowId": "QbCQ808tY95n6YP0",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T08:45:45.000Z",
+  "versionId": "d9b02c7b-b16e-4d67-85de-8f65fdef59a7"
+}
