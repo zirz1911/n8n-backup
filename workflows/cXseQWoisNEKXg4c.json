@@ -1,0 +1,347 @@
+{
+  "active": false,
+  "connections": {
+    "Set Bridge Vars": {
+      "main": [
+        [
+          {
+            "node": "Call Bridge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Bridge": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Bridge Vars1": {
+      "main": [
+        [
+          {
+            "node": "Call Bridge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Bridge1": {
+      "main": [
+        [
+          {
+            "node": "Respond1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Bridge Vars2": {
+      "main": [
+        [
+          {
+            "node": "Call Bridge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Bridge2": {
+      "main": [
+        [
+          {
+            "node": "Respond2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set Bridge Vars",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Set Bridge Vars1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Set Bridge Vars2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-27T09:47:47.817Z",
+  "id": "cXseQWoisNEKXg4c",
+  "isArchived": false,
+  "meta": null,
+  "name": "MT5 Backup",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "8587e367-1486-42a4-b5b1-edc0c0787b24",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "cc0c9a35-2f6c-4fa5-8204-fdcd47d13053",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        -192
+      ],
+      "webhookId": "8587e367-1486-42a4-b5b1-edc0c0787b24"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "BRIDGE_URL",
+              "value": "http://192.168.1.198:5005"
+            },
+            {
+              "name": "BRIDGE_TOKEN"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8b7cd226-0296-4c4f-a741-6ce7d7ad7508",
+      "name": "Set Bridge Vars",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        112,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$json.BRIDGE_URL}}/close",
+        "options": {}
+      },
+      "id": "b341b95f-a9b3-4b44-af33-89da64a1104b",
+      "name": "Call Bridge",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        384,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "021e7858-76ec-4f24-ba23-c14732a43e7e",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        624,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "54a788c6-0bb4-476a-9b0d-df1f17dc0f74",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "d35e9703-be61-46c1-a08b-b84a12fe8299",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        32
+      ],
+      "webhookId": "54a788c6-0bb4-476a-9b0d-df1f17dc0f74"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "BRIDGE_URL",
+              "value": "http://127.0.0.1:5005"
+            },
+            {
+              "name": "BRIDGE_TOKEN"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1e82771f-1675-40e5-a755-8f16855598a0",
+      "name": "Set Bridge Vars1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        112,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$json.BRIDGE_URL}}/order",
+        "options": {}
+      },
+      "id": "32c7e92c-103c-49c6-9d59-329ae6ae626b",
+      "name": "Call Bridge1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        384,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "359c4327-4909-4dcf-9591-6db2c9e5e44f",
+      "name": "Respond1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        624,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "path": "7309a2f9-1430-4bbb-b9e7-97a31d31e6e4",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "26bc2c19-2904-4a34-8de7-a64a84fde3c7",
+      "name": "Webhook2",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        208
+      ],
+      "webhookId": "7309a2f9-1430-4bbb-b9e7-97a31d31e6e4"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "BRIDGE_URL",
+              "value": "http://192.168.1.198:5005"
+            },
+            {
+              "name": "BRIDGE_TOKEN"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4f583df0-b1c4-4d9d-8b6c-5ef988a0fe73",
+      "name": "Set Bridge Vars2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        112,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$json.BRIDGE_URL}}/price",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{$json.symbol || \"XAUUSD\"}}"
+            },
+            {
+              "name": "=token",
+              "value": "={{$json.BRIDGE_TOKEN || \"mysecret\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d3449e33-b413-4bea-a1a7-6fdb1fae0c28",
+      "name": "Call Bridge2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        384,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "14b82ebc-efc1-4edd-ae9d-faea0c0e6fe7",
+      "name": "Respond2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        624,
+        208
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-27T09:47:47.826Z",
+      "updatedAt": "2025-09-27T09:47:47.826Z",
+      "role": "workflow:owner",
+      "workflowId": "cXseQWoisNEKXg4c",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-09-27T09:47:47.817Z",
+  "versionId": "7b3b99b0-e6c1-4eba-bba5-7bbb2928c72a"
+}
