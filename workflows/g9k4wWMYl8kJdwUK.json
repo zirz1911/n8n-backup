@@ -1,0 +1,287 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        []
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-12T06:29:09.105Z",
+  "id": "g9k4wWMYl8kJdwUK",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.gemlogin.io/api/v2/execscript",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"token\": \"aFPfO08a7AwfrJitgROnJQIns9SVg60JYiq6Ad6qzPaRwz1haQD2FC7SivTSPAJg\",\n  \"device_id\": \"657F210AF8D89403096BB6D13B5641FA\",\n  \"profile_id\": \"11\",\n  \"workflow_id\": \"mdXQ7rFmdrqu0K9ezQ26p\",\n  \"parameter\": {\n    \"description\": \"{{ $('Google Sheets Trigger').item.json.Description }}\",\n    \"linkpost\": \"{{ $('Google Sheets Trigger').item.json.Link }}\",\n    \"hashtag1\": \"{{ $('Google Sheets Trigger').item.json.Hashtag1 }}\",\n    \"hashtag2\": \"{{ $('Google Sheets Trigger').item.json.Hashtag2 }}\",\n    \"hashtag3\": \"{{ $('Google Sheets Trigger').item.json.Hashtag3 }}\"\n  },\n  \"soft_id\": \"1\",\n  \"close_browser\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1140,
+        720
+      ],
+      "id": "111f1e04-5d4e-411b-aebc-7e7055b19d99",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        1120
+      ],
+      "id": "a3e63100-e381-4dbe-adaa-e0636fd23b47",
+      "name": "Telegram Trigger",
+      "webhookId": "1d5181f0-f4e3-47ce-9a0b-49e590ae5b73",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -300,
+        1120
+      ],
+      "id": "974c49c2-1562-46c8-abcd-3fc7a8e08351",
+      "name": "Telegram Trigger1",
+      "webhookId": "b4f76e31-3d78-4707-9e0d-c7a81daddb06",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b3bf5bec-448f-4b7b-bfee-23351ff72fff",
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": "upload",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "fb77b151-71c8-4db1-bdb4-09865354748b",
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": "Upload",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -60,
+        1120
+      ],
+      "id": "5114480a-c260-454b-b0af-e65edbb7b078",
+      "name": "If",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1tdLe76DgoNo1maM_uKjFC-TOioJN6aNCc65SO5GzXdY/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "TikTok",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1tdLe76DgoNo1maM_uKjFC-TOioJN6aNCc65SO5GzXdY/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        720
+      ],
+      "id": "95a9edfb-1447-427e-bb5a-3137f7e39e9b",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "lg7O77jyV5ThnExj",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=7738519619",
+        "text": "=Processing on Gemlogin",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1380,
+        720
+      ],
+      "id": "30d62f50-ddc7-439b-982d-ff2d162c90ff",
+      "name": "Send a text message1",
+      "webhookId": "22c9e2ba-4b2c-49f6-a9d4-52dd475f038e",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=7738519619",
+        "text": "=Read Lastest File Update \n{{ $json.Description }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        920,
+        720
+      ],
+      "id": "ba38ce05-3acf-4272-8844-f403124345fe",
+      "name": "Send a text message",
+      "webhookId": "22c9e2ba-4b2c-49f6-a9d4-52dd475f038e",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-07-12T06:29:09.112Z",
+      "updatedAt": "2025-07-12T06:29:09.112Z",
+      "role": "workflow:owner",
+      "workflowId": "g9k4wWMYl8kJdwUK",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1tdLe76DgoNo1maM_uKjFC-TOioJN6aNCc65SO5GzXdY",
+      "sheetId": 0,
+      "lastIndexChecked": 2
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-05T10:21:35.000Z",
+  "versionId": "b178b444-cda9-497e-96bc-86b08cb7cdc4"
+}
