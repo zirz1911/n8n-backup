@@ -1,0 +1,83 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-26T14:55:44.915Z",
+  "id": "QOVU3W0PVP7mPXOH",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Test n8n",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sendtelegram",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1056,
+        64
+      ],
+      "id": "611c2165-466e-4568-9d61-20dfcf7ee40a",
+      "name": "Webhook",
+      "webhookId": "ab6f0d5c-4c0c-4b5e-8a40-92e6d92e6ca4"
+    },
+    {
+      "parameters": {
+        "chatId": "7738519619",
+        "text": "Yo Bro",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -816,
+        64
+      ],
+      "id": "7f8846c7-0762-4496-854f-64ec3c39e85b",
+      "name": "Send a text message",
+      "webhookId": "af2abb94-bc7e-4cbc-93e1-478e0bfe78b5",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-26T14:55:44.939Z",
+      "updatedAt": "2025-08-26T14:55:44.939Z",
+      "role": "workflow:owner",
+      "workflowId": "QOVU3W0PVP7mPXOH",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-21T10:23:08.000Z",
+  "versionId": "edf77855-ec45-4373-a4bd-d7775fd34060"
+}
