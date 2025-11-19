@@ -1,0 +1,1286 @@
+{
+  "active": true,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Router Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post Paji": {
+      "main": [
+        [
+          {
+            "node": "โพสครับพี่",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Caption": {
+      "main": [
+        [
+          {
+            "node": "Reformat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reformat": {
+      "main": [
+        [
+          {
+            "node": "Check Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Image": {
+      "main": [
+        [
+          {
+            "node": "Post Paji",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Create Caption",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Create Caption",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check CMD": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Caption",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Check Image1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "TikTok Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Router Check": {
+      "main": [
+        [
+          {
+            "node": "Check CMD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Create Caption1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Create Caption1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Caption1": {
+      "main": [
+        [
+          {
+            "node": "Reformat1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reformat1": {
+      "main": [
+        []
+      ]
+    },
+    "Check Image1": {
+      "main": [
+        [
+          {
+            "node": "Get 4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get 5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get 4": {
+      "main": [
+        [
+          {
+            "node": "Upload Media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get 5": {
+      "main": [
+        [
+          {
+            "node": "Upload Media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Image": {
+      "main": [
+        [
+          {
+            "node": "Get ",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get 6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get ": {
+      "main": [
+        [
+          {
+            "node": "Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get 6": {
+      "main": [
+        [
+          {
+            "node": "Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Media": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        []
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TikTok Post": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-14T10:31:45.673Z",
+  "id": "nflV6Mikk1fHsmHd",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Bot Javix",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1664,
+        -128
+      ],
+      "id": "cbc790f5-f257-415c-a2a4-32390270798e",
+      "name": "Telegram Trigger",
+      "webhookId": "b4f9c1c6-3492-4e3c-b9a7-9a1588b98893",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Hi, What can I help you?",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -128,
+        -288
+      ],
+      "id": "c3d42ef0-5b1e-42c4-8c05-76706203822e",
+      "name": "Send a text message",
+      "webhookId": "c4a4d949-135c-4552-94cb-d04c586034b0",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "y46XTx9jbklIiwfm",
+          "mode": "list",
+          "cachedResultName": "Test n8n Javix"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -128,
+        -64
+      ],
+      "id": "94fcea84-b3c5-4bf0-8383-43ce818bb4b3",
+      "name": "Execute Workflow"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v23.0",
+        "node": "me",
+        "edge": "photos",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "message",
+                "value": "={{ $('Reformat').item.json.output }}"
+              },
+              {
+                "name": "url",
+                "value": "={{ $json.webContentLink }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        224
+      ],
+      "id": "4ebc846c-040d-4804-a989-613a9038ec2a",
+      "name": "Post Paji",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "8vT2MhSYuJoXVPJ9",
+          "name": "Paji Min"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=7738519619",
+        "text": "โพสแล้วครับพี่ เพจ Paji Min|https://www.facebook.com/profile.php?id=61564550798331",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1248,
+        224
+      ],
+      "id": "55d5a146-8b34-464c-926a-93c8583ded57",
+      "name": "โพสครับพี่",
+      "webhookId": "26ed105e-8d91-4274-9f19-666202c34eea",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Post to Facebook Paji Min",
+        "height": 480,
+        "width": 2096,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        64
+      ],
+      "id": "72396a3b-45ed-4882-b59c-a2870c5e6462",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ช่วยเขียนแคปชั่นเป็นภาษาไทยจากชื่อจากข้อความนี้ {{$json.caption}}\nออกมาในรูปแบบบทความบนเฟสบุ๊ค น่าสนใจ เข้าใจง่าย ไม่ต้องสวัสดีใคร ฟีลเหมือนเพื่อนคุยกัน ไม่ต้องทางการ ให้ความรู้เหมือนชายอายุ 25 ที่เป็นเด็ก Gen z เป็นคนโพส\nใส่แฮชแท็กที่เกี่ยวข้อง 4 อัน ใช้คำไม่เกิน 600 คำ ไม่ต้องใส่ข้อความลิงก์ดาวโหลด\nเอาเฉพาะคำตอบ\n\nตัวอย่างเนื้อหาโพส 1\n\n🚀 แจกฟรี! AI Workflow “Futuristic City Tower”  \nสร้างคลิป YouTube Shorts / TikTok / Reels แบบ *กดครั้งเดียว จบทุกขั้นตอน* 💥  \nอันนี้เป็นเวอชั่นที่คุณเน้นจ่าย API เป็นหลักครับ ส่วนเวอชั่นประหยัดที่ 1 คลิปไม่เสียเงินเลย นอกจากค่าไฟ เดี๋ยวจะมาปล่อยในตอนหลังครับ ติดตามไว้นะครับ ไม่ขายคอร์สตอนหลังแน่นอน เพราะไม่มีเวลาสอน 🙁\nปล. เน้นแจกครับ ไม่เน้นขาย\n---\n### ทำอะไรได้บ้าง  \n1. สุ่มธีมเมืองอนาคต  – โค้ด JavaScript เลือก city_type, materials, lighting ฯลฯ อัตโนมัติ  \n2. สร้าง Image Prompt + Video Prompt ด้วย LLM (OpenRouter + LangChain)  \n3. ผลิตภาพ 8K ผ่าน Flux 1.1 Ultra** → รอ 45 วินาที  \n4. แปลงภาพเป็นวิดีโอ 9:16 ด้วย Kling Video v1.6 Pro  \n5. แต่งซาวด์ (SFX + BGM) ผ่าน ElevenLabs  \n6. Render รวมเสียง-ภาพ ด้วย Creatomate  \n7. บันทึกข้อมูล ลง Google Sheet (ชื่อคลิป, คำอธิบาย, Hashtags, URL ฯลฯ)  \n8. อัปโหลดอัตโนมัติ ไป YouTube, TikTok, Instagram (ผ่าน API เดียว)  \n9. Trigger ตารางเวลา – ยิง 2 รอบ/วัน หรือกด Manual Test ก็ได้  \nทั้งหมดไหลใน n8n workflow เดียว 🎯   \n---\n### เหมาะกับใคร  \n- สาย คอนเทนต์สายเทค / เมืองอนาคต / architecture  \n- คนทำ ช่อง Shorts faceless ที่อยากอัตโนมัติ 100 %  \n- ทีมโปรดักชันเล็ก ๆ ที่ต้องการ *เร็ว-ถูก-ดี*  \n---\n### ของที่ต้องเตรียม  \n- API Key ส่วนตัวของคุณสำหรับ Flux, Kling, ElevenLabs, Creatomate \n- Google Sheets 1 ชุด (มีคอลัมน์ตาม workflow)  \n- บัญชี n8n (Self-host / Cloud ก็ได้)  \n> หมายเหตุ: ลบหรือเปลี่ยนคีย์ที่ผมใส่ไว้ในไฟล์ก่อนใช้งาน เพื่อความปลอดภัยของคุณเอง\n—\n\n\nตัวอย่างเนื้อหาโพส 2\n\n🌍 Google เปิดเว็บสอนภาษา\nเรียนรู้ได้จาก AI แบบไม่ต้องนัดครู\n.\n💥 Little Language Lessons\nเว็บไซต์ใหม่จาก Google\nที่ใช้ Gemini มาสร้างบทเรียนให้ทั้งหมด\n.\nเว็บนี้ไม่ได้สอนแบบน่าเบื่อ\nแต่ใช้ AI มาช่วยให้เรา ฝึกภาษาในชีวิตจริง ได้เลย\n.\nผ่าน 3 โหมดหลัก :\n.\n1) Tiny Lesson\nพิมพ์สถานการณ์ที่อยากเรียน\nเช่น \"I’m going to the Korean market\" \nGemini จะสอนคำและประโยคที่ใช้จริงในสถานการณ์นั้น\n.\n2) Slang Hang\nฝึกออกเสียงคำสแลงและบทสนทนา\nเหมือนได้พูดคุยกับเพื่อนเจ้าของภาษา\nโหมดนี้ช่วยให้เรา ออกเสียงชัดขึ้น แบบไม่เขิน\n.\n3) Word Cam\nเปิดกล้องมือถือ ถ่ายสิ่งรอบตัว\nAI จะสอนคำศัพท์จากภาพที่เห็น\nเช่น ถ่ายแก้วน้ำ = คำว่า “glass” ก็จะปรากฏขึ้น\nสนุกเหมือนเล่นเกม แต่ได้ศัพท์จริง\n.\n.\nGoogle บอกว่า\nนี่คือ การทดลอง ว่า Gemini \nจะช่วยพัฒนาเว็บแอปด้านการศึกษาได้แค่ไหน\nใครอยากลองก่อนใคร คลิกเลย\nhttps://labs.google/lll/en\n( ยังไม่มีภาษาไทย )\n.\nเพราะนี่ไม่ใช่แค่เว็บเรียนภาษา\nแต่มันแสดงให้เห็นว่า อนาคตของการศึกษาแบบ AI-first\nกำลังเริ่มขึ้นแล้ว\n.\nใครเป็นสายเรียนรู้ด้วยภาพ เสียง และสถานการณ์จริง\nแนะนำให้ลอง แล้วบอกเราด้วยว่าชอบโหมดไหนที่สุดครับ\n—\nWi3.CHATBOT\nพื้นที่เรียนรู้โลก AI อย่างเข้าใจ และสนุกได้ทุกวัน\n#Wi3chatbot #เรียนรู้กับAI #GeminiAI #google\n\n\nตัวอย่างเนื้อหาโพส 3\n\nอยาก automate โว้ยยย | n8n กาววิเศษสำหรับการเชื่อมแอปพลิเคชั่นต่างๆ ✨ \nเบื่องานซ้ำซ้อนที่ต้องทำข้ามแอปฯ ไปมาไหม? เช่น ดึงข้อมูลจากอีเมลไปใส่ Google Sheets แล้วแจ้งเตือนใน Slack? 😵‍💫\nn8n (อ่านว่า เอ็น-เอท-เอ็น) คือเครื่องมือ 'Workflow Automation' ที่จะมาช่วยให้ชีวิตง่ายขึ้น! คิดภาพเหมือนตัวต่อ LEGO ดิจิทัล หรือกาววิเศษที่เชื่อมแอปฯ ที่เราใช้ทุกวันให้ทำงานร่วมกันได้อัตโนมัติ 🤖\n🤔 มันทำอะไรได้บ้าง?\n✅ สร้าง Workflow ง่ายๆ: จะลากวางแบบ Visual 🖱️ (ไม่ต้องเขียนโค้ด!) หรือจะเขียนโค้ด (JavaScript/Python) สำหรับงานซับซ้อนก็ได้ ยืดหยุ่นสุดๆ\n✅ เชื่อมต่อเพียบ: รองรับกว่า 400+ แอปฯ ยอดฮิต! ทั้ง Google Workspace, Slack, Discord, Database, และที่สำคัญคือเครื่องมือ AI ต่างๆ 🔗\n✅ พลัง AI: จุดเด่นคือการนำ AI (เช่น LLMs) มาใส่ใน Workflow ได้ง่ายๆ แค่ลากวาง! สร้าง Agent AI ช่วยงานก็ยังได้ 🧠\n✅ เลือกที่ติดตั้งได้: จะติดตั้งบน Server ของตัวเอง (Self-host) เพื่อคุมข้อมูลเต็มที่ หรือใช้บริการ Cloud ของ n8n ก็สะดวก 👍\n✅ ฟรีและ Open Source: เปิดให้ใช้ฟรี! มี Community กว่า 200,000 คนคอยช่วย มี Templates สำเร็จรูปกว่า 1,700 แบบให้เริ่มใช้ง่ายๆ 🤝\n🧑‍💻 เหมาะกับใคร?\nหลักๆ คือทีมสาย Tech (IT, Dev, Security) แต่ด้วยความที่ใช้ง่าย คนทั่วไปที่อยากลองทำ Automation เองก็เริ่มจากตัว Visual ได้สบายๆ\nสรุปคือ n8n เป็นเครื่องมือทรงพลังที่ช่วยประหยัดเวลา ลดข้อผิดพลาด และทำให้การเชื่อมต่อแอปฯ ต่างๆ + AI เป็นเรื่องง่ายขึ้นเยอะเลย! ลองไปเล่นกันดูได้ที่ n8n.io นะครับ 😉\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -528,
+        240
+      ],
+      "id": "b1a29815-8c34-4057-ac12-14f8bb43411a",
+      "name": "Create Caption"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- Markdown -> Plain text ---\nfunction mdToPlain(input) {\n  let s = String(input ?? \"\");\n\n  // normalise newlines + \"\\n\"\n  s = s.replace(/\\r\\n?/g, \"\\n\");\n  s = s.replace(/\\\\n/g, \"\\n\");\n\n  // headings\n  s = s.replace(/^\\s{0,3}#{1,6}\\s*/gm, \"\");\n\n  // blockquote\n  s = s.replace(/^\\s{0,3}>\\s?/gm, \"\");\n\n  // ordered list -> 1) ...\n  s = s.replace(/^\\s{0,3}(\\d+)\\.\\s+/gm, (_, n) => `${n}) `);\n\n  // bullet list -> • ...\n  s = s.replace(/^\\s{0,3}[-*+]\\s+/gm, \"• \");\n\n  // images ![alt](url) -> alt\n  s = s.replace(/!\\[([^\\]]*)\\]\\(([^)]+)\\)/g, \"$1\");\n\n  // links [text](url) -> text\n  s = s.replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g, \"$1\");\n\n  // bold/italic\n  s = s.replace(/(\\*\\*|__)(.*?)\\1/g, \"$2\");\n  s = s.replace(/(\\*|_)(.*?)\\1/g, \"$2\");\n\n  // code blocks & inline code\n  s = s.replace(/```[\\s\\S]*?```/g, m => m.replace(/```/g, \"\").trim());\n  s = s.replace(/`([^`]+)`/g, \"$1\");\n\n  // hr\n  s = s.replace(/^\\s*[-*_]{3,}\\s*$/gm, \"\");\n\n  // trim line-end spaces + collapse blank lines\n  s = s.replace(/[ \\t]+$/gm, \"\");\n  s = s.replace(/\\n{3,}/g, \"\\n\\n\");\n\n  return s.trim();\n}\n\n// ---------- n8n glue ----------\n\n// Helper: แปลง 1 item\nfunction transformItem(item) {\n  // เลือก field ที่จะอ่าน: text | input | output | ทั้ง json\n  const src =\n    item.json.text ??\n    item.json.input ??\n    item.json.output ??\n    \"\"; // fallback\n\n  const plain = mdToPlain(src);\n\n  return {\n    json: {\n      ...item.json,   // เก็บข้อมูลเดิมไว้\n      plain,          // ข้อความที่ถูกแปลง\n      // คุณจะเปลี่ยนชื่อ field เป็นอย่างอื่นก็ได้ เช่น \"clean\"\n    },\n  };\n}\n\n// รองรับทั้งสองโหมดของ Code node\nif ($input.all) {\n  // Run Once for All Items\n  const items = $input.all();\n  return items.map(transformItem);\n} else {\n  // Run Once for Each Item\n  return [transformItem({ json: $json })];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        240
+      ],
+      "id": "cd2bbf14-2e45-4fce-89a3-cccb208c22b6",
+      "name": "Reformat"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Telegram Trigger').item.json.message.caption }}",
+        "driveId": {
+          "__rl": true,
+          "value": "1HEvJ5u-FwasMQ47gFiCY5eBtDiVnhIvm",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        848,
+        224
+      ],
+      "id": "968586a2-c68a-41db-b06e-9da1048075fd",
+      "name": "Upload Image",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.caption }}",
+        "databaseName": "aibrain"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        400
+      ],
+      "id": "99bb07b0-abe6-40d0-a8bf-2ffdecbc8e4e",
+      "name": "Chat Memory",
+      "credentials": {
+        "mongoDb": {
+          "id": "dpp3oNAOtxvs59Hj",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -544,
+        400
+      ],
+      "id": "c47f45fc-8b4e-488e-b211-885d7b104e15",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "2601dc9f-3dbb-49ee-8238-fe7941a23ab3"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bb9dbf84-e242-49d7-8c49-2dcaa54a120a",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "95796d59-f84b-43e4-bc30-92360327c3a5",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "status",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1e084387-0c56-4d17-a381-db7302d1783b",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "post",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "262db77a-ad3f-455a-a6a6-55ba2c44dc2c",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "x",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9fa4dc47-a827-4096-adb2-b8101be8fcc4",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "trade",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "05ee369c-7dac-41bb-ab6d-2ca5397bd459",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "tiktok",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1296,
+        -144
+      ],
+      "id": "d304eecd-0a83-463f-93de-9599b5998bf6",
+      "name": "Check CMD"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- pick text from message / caption / callback ---\nconst msg =\n  $json.message ||\n  $json.edited_message ||\n  $json.callback_query?.message ||\n  {};\nconst textRaw =\n  $json.message?.text ??\n  $json.message?.caption ??\n  $json.callback_query?.data ??\n  \"\";\nconst text = String(textRaw ?? \"\").trim();\n\n// parse \"/cmd args\"  หรือ \"cmd args\"\nfunction parseCommand(s) {\n  const m = s.match(/^\\/?([A-Za-z0-9_]+)(?:\\s+(.*))?$/);\n  if (!m) return { cmd: \"fallback\", args: s };\n  return { cmd: m[1].toLowerCase(), args: m[2] || \"\" };\n}\n\nconst { cmd, args } = parseCommand(text);\n\n// --- pick media (ถ้ามี) ---\n// 1) รูป (Telegram จะส่งหลายขนาดใน message.photo -> เอาอันใหญ่สุดตัวท้าย)\nlet media = null;\nconst photos = $json.message?.photo || [];\nif (Array.isArray(photos) && photos.length) {\n  const p = photos[photos.length - 1];\n  media = {\n    kind: \"photo\",\n    file_id: p.file_id,\n    width: p.width,\n    height: p.height,\n  };\n}\n// 2) เอกสารที่เป็นรูป (บางคนส่งรูปเป็น document)\nelse if ($json.message?.document?.mime_type?.startsWith?.(\"image/\")) {\n  const d = $json.message.document;\n  media = {\n    kind: \"image_document\",\n    file_id: d.file_id,\n    mime_type: d.mime_type,\n    file_name: d.file_name,\n  };\n}\n// 3) วิดีโอ (ถ้าอยากรองรับโพสต์วิดีโอภายหลัง)\nelse if ($json.message?.video) {\n  const v = $json.message.video;\n  media = {\n    kind: \"video\",\n    file_id: v.file_id,\n    width: v.width,\n    height: v.height,\n    mime_type: v.mime_type,\n  };\n}\n\n// === mapping คำสั่ง -> ปลายทาง ===\n// เลือกอย่างใดอย่างหนึ่ง: Execute Workflow โดยชื่อ/ID หรือยิง Webhook\nconst routes = {\n  start:  { type: \"exec\",    workflowName: \"Welcome Flow\" },\n  help:   { type: \"exec\",    workflowName: \"Help Flow\" },\n  status: { type: \"exec\",    workflowName: \"Test n8n\" },\n  gen:    { type: \"webhook\", url: \"https://YOUR_N8N/webhook/GEN_ID?token=XYZ\" },\n\n  trade:  { type: \"webhook\", url: \"https://YOUR_N8N/webhook/GEN_ID?token=XYZ\" },\n\n  tiktok:  { type: \"webhook\", url: \"https://YOUR_N8N/webhook/GEN_ID?token=XYZ\" },\n\n  // ★ เปลี่ยนเป็น webhook/exec ของ workflow ที่จะโพสต์ Facebook ★\n  // ถ้าใช้ Webhook Trigger ใน FB workflow:\n  post:   { type: \"webhook\", url: \"https://YOUR_N8N/webhook/fb-post?token=XYZ\" },\n\n  // ★ เพิ่มโพสต์ X: ให้ Router ยิงไปเวิร์กโฟลว์ x-post\n  x:      { type: \"webhook\", url: \"https://YOUR_N8N/webhook/x-post?token=XYZ\" },\n  tweet:  { type: \"webhook\", url: \"https://YOUR_N8N/webhook/x-post?token=XYZ\" },\n\n};\n\n// อนุญาตทั้ง /post และ /fb\nconst isPostCmd = cmd === \"post\" || cmd === \"fb\";\n// อนุญาตทั้ง /x และ /tweet\nconst isXCmd = cmd === \"x\" || cmd === \"tweet\";\n\n// กำหนด route key ครั้งเดียว\nlet key;\nif (isPostCmd) {\n  key = \"post\";\n} else if (isXCmd) {\n  key = \"x\";\n} else {\n  key = routes[cmd] ? cmd : \"fallback\";\n}\n\nreturn [{\n  json: {\n    chat_id: msg?.chat?.id,\n    message_id: msg?.message_id ?? $json.callback_query?.message?.message_id,\n    text, cmd, args,\n    caption: args || \"\",\n    media,\n    has_media: !!media,\n    route: key,\n    target: routes[key] || null\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1488,
+        -128
+      ],
+      "id": "3c0be666-fcfb-44e5-94d4-7ab3ac978b3a",
+      "name": "Router Check"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ช่วยเขียนแคปชั่นเป็นภาษาไทยจากชื่อจากข้อความนี้ {{$json.caption}}\nออกมาในรูปแบบบทความบน X ตลก เข้าใจง่าย ไม่ต้องสวัสดีใคร ฟีลเหมือนเพื่อนคุยกัน ไม่ต้องทางการ ให้ความรู้เหมือนชายอายุ 25 ที่เป็นเด็ก Gen z เป็นคนโพส\nใส่แฮชแท็กที่เกี่ยวข้อง 4 อัน ใช้คำไม่เกิน 280 ตัวอักษร ไม่ต้องใส่ข้อความลิงก์ดาวโหลด ไม่ต้องติดแฮชแท็ก\nเอาเฉพาะคำตอบ\n\nตัวอย่างเนื้อหาโพส 1\n\n🚀 แจกฟรี! AI Workflow “Futuristic City Tower”  \nสร้างคลิป YouTube Shorts / TikTok / Reels แบบ *กดครั้งเดียว จบทุกขั้นตอน* 💥  \nอันนี้เป็นเวอชั่นที่คุณเน้นจ่าย API เป็นหลักครับ ส่วนเวอชั่นประหยัดที่ 1 คลิปไม่เสียเงินเลย นอกจากค่าไฟ เดี๋ยวจะมาปล่อยในตอนหลังครับ ติดตามไว้นะครับ ไม่ขายคอร์สตอนหลังแน่นอน เพราะไม่มีเวลาสอน 🙁\nปล. เน้นแจกครับ ไม่เน้นขาย\n---\n### ทำอะไรได้บ้าง  \n1. สุ่มธีมเมืองอนาคต  – โค้ด JavaScript เลือก city_type, materials, lighting ฯลฯ อัตโนมัติ  \n2. สร้าง Image Prompt + Video Prompt ด้วย LLM (OpenRouter + LangChain)  \n3. ผลิตภาพ 8K ผ่าน Flux 1.1 Ultra** → รอ 45 วินาที  \n4. แปลงภาพเป็นวิดีโอ 9:16 ด้วย Kling Video v1.6 Pro  \n5. แต่งซาวด์ (SFX + BGM) ผ่าน ElevenLabs  \n6. Render รวมเสียง-ภาพ ด้วย Creatomate  \n7. บันทึกข้อมูล ลง Google Sheet (ชื่อคลิป, คำอธิบาย, Hashtags, URL ฯลฯ)  \n8. อัปโหลดอัตโนมัติ ไป YouTube, TikTok, Instagram (ผ่าน API เดียว)  \n9. Trigger ตารางเวลา – ยิง 2 รอบ/วัน หรือกด Manual Test ก็ได้  \nทั้งหมดไหลใน n8n workflow เดียว 🎯   \n---\n### เหมาะกับใคร  \n- สาย คอนเทนต์สายเทค / เมืองอนาคต / architecture  \n- คนทำ ช่อง Shorts faceless ที่อยากอัตโนมัติ 100 %  \n- ทีมโปรดักชันเล็ก ๆ ที่ต้องการ *เร็ว-ถูก-ดี*  \n---\n### ของที่ต้องเตรียม  \n- API Key ส่วนตัวของคุณสำหรับ Flux, Kling, ElevenLabs, Creatomate \n- Google Sheets 1 ชุด (มีคอลัมน์ตาม workflow)  \n- บัญชี n8n (Self-host / Cloud ก็ได้)  \n> หมายเหตุ: ลบหรือเปลี่ยนคีย์ที่ผมใส่ไว้ในไฟล์ก่อนใช้งาน เพื่อความปลอดภัยของคุณเอง\n—\n\n\nตัวอย่างเนื้อหาโพส 2\n\n🌍 Google เปิดเว็บสอนภาษา\nเรียนรู้ได้จาก AI แบบไม่ต้องนัดครู\n.\n💥 Little Language Lessons\nเว็บไซต์ใหม่จาก Google\nที่ใช้ Gemini มาสร้างบทเรียนให้ทั้งหมด\n.\nเว็บนี้ไม่ได้สอนแบบน่าเบื่อ\nแต่ใช้ AI มาช่วยให้เรา ฝึกภาษาในชีวิตจริง ได้เลย\n.\nผ่าน 3 โหมดหลัก :\n.\n1) Tiny Lesson\nพิมพ์สถานการณ์ที่อยากเรียน\nเช่น \"I’m going to the Korean market\" \nGemini จะสอนคำและประโยคที่ใช้จริงในสถานการณ์นั้น\n.\n2) Slang Hang\nฝึกออกเสียงคำสแลงและบทสนทนา\nเหมือนได้พูดคุยกับเพื่อนเจ้าของภาษา\nโหมดนี้ช่วยให้เรา ออกเสียงชัดขึ้น แบบไม่เขิน\n.\n3) Word Cam\nเปิดกล้องมือถือ ถ่ายสิ่งรอบตัว\nAI จะสอนคำศัพท์จากภาพที่เห็น\nเช่น ถ่ายแก้วน้ำ = คำว่า “glass” ก็จะปรากฏขึ้น\nสนุกเหมือนเล่นเกม แต่ได้ศัพท์จริง\n.\n.\nGoogle บอกว่า\nนี่คือ การทดลอง ว่า Gemini \nจะช่วยพัฒนาเว็บแอปด้านการศึกษาได้แค่ไหน\nใครอยากลองก่อนใคร คลิกเลย\nhttps://labs.google/lll/en\n( ยังไม่มีภาษาไทย )\n.\nเพราะนี่ไม่ใช่แค่เว็บเรียนภาษา\nแต่มันแสดงให้เห็นว่า อนาคตของการศึกษาแบบ AI-first\nกำลังเริ่มขึ้นแล้ว\n.\nใครเป็นสายเรียนรู้ด้วยภาพ เสียง และสถานการณ์จริง\nแนะนำให้ลอง แล้วบอกเราด้วยว่าชอบโหมดไหนที่สุดครับ\n—\nWi3.CHATBOT\nพื้นที่เรียนรู้โลก AI อย่างเข้าใจ และสนุกได้ทุกวัน\n#Wi3chatbot #เรียนรู้กับAI #GeminiAI #google\n\n\nตัวอย่างเนื้อหาโพส 3\n\nอยาก automate โว้ยยย | n8n กาววิเศษสำหรับการเชื่อมแอปพลิเคชั่นต่างๆ ✨ \nเบื่องานซ้ำซ้อนที่ต้องทำข้ามแอปฯ ไปมาไหม? เช่น ดึงข้อมูลจากอีเมลไปใส่ Google Sheets แล้วแจ้งเตือนใน Slack? 😵‍💫\nn8n (อ่านว่า เอ็น-เอท-เอ็น) คือเครื่องมือ 'Workflow Automation' ที่จะมาช่วยให้ชีวิตง่ายขึ้น! คิดภาพเหมือนตัวต่อ LEGO ดิจิทัล หรือกาววิเศษที่เชื่อมแอปฯ ที่เราใช้ทุกวันให้ทำงานร่วมกันได้อัตโนมัติ 🤖\n🤔 มันทำอะไรได้บ้าง?\n✅ สร้าง Workflow ง่ายๆ: จะลากวางแบบ Visual 🖱️ (ไม่ต้องเขียนโค้ด!) หรือจะเขียนโค้ด (JavaScript/Python) สำหรับงานซับซ้อนก็ได้ ยืดหยุ่นสุดๆ\n✅ เชื่อมต่อเพียบ: รองรับกว่า 400+ แอปฯ ยอดฮิต! ทั้ง Google Workspace, Slack, Discord, Database, และที่สำคัญคือเครื่องมือ AI ต่างๆ 🔗\n✅ พลัง AI: จุดเด่นคือการนำ AI (เช่น LLMs) มาใส่ใน Workflow ได้ง่ายๆ แค่ลากวาง! สร้าง Agent AI ช่วยงานก็ยังได้ 🧠\n✅ เลือกที่ติดตั้งได้: จะติดตั้งบน Server ของตัวเอง (Self-host) เพื่อคุมข้อมูลเต็มที่ หรือใช้บริการ Cloud ของ n8n ก็สะดวก 👍\n✅ ฟรีและ Open Source: เปิดให้ใช้ฟรี! มี Community กว่า 200,000 คนคอยช่วย มี Templates สำเร็จรูปกว่า 1,700 แบบให้เริ่มใช้ง่ายๆ 🤝\n🧑‍💻 เหมาะกับใคร?\nหลักๆ คือทีมสาย Tech (IT, Dev, Security) แต่ด้วยความที่ใช้ง่าย คนทั่วไปที่อยากลองทำ Automation เองก็เริ่มจากตัว Visual ได้สบายๆ\nสรุปคือ n8n เป็นเครื่องมือทรงพลังที่ช่วยประหยัดเวลา ลดข้อผิดพลาด และทำให้การเชื่อมต่อแอปฯ ต่างๆ + AI เป็นเรื่องง่ายขึ้นเยอะเลย! ลองไปเล่นกันดูได้ที่ n8n.io นะครับ 😉\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -560,
+        704
+      ],
+      "id": "699d2bae-9e44-4ba7-bcfd-86a16b2fd499",
+      "name": "Create Caption1"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.caption }}",
+        "databaseName": "aibrain"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        864
+      ],
+      "id": "99b72607-b793-492e-b010-7c37a5ba5143",
+      "name": "Chat Memory1",
+      "credentials": {
+        "mongoDb": {
+          "id": "dpp3oNAOtxvs59Hj",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -576,
+        864
+      ],
+      "id": "588c21a5-858c-4dcc-baef-021f4080de71",
+      "name": "OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Post to X Paji",
+        "height": 480,
+        "width": 2096,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        544
+      ],
+      "id": "6ea16a9d-4131-448e-a3ba-c996951c54c7",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- Markdown -> Plain text ---\nfunction mdToPlain(input) {\n  let s = String(input ?? \"\");\n\n  // normalise newlines + \"\\n\"\n  s = s.replace(/\\r\\n?/g, \"\\n\");\n  s = s.replace(/\\\\n/g, \"\\n\");\n\n  // headings\n  s = s.replace(/^\\s{0,3}#{1,6}\\s*/gm, \"\");\n\n  // blockquote\n  s = s.replace(/^\\s{0,3}>\\s?/gm, \"\");\n\n  // ordered list -> 1) ...\n  s = s.replace(/^\\s{0,3}(\\d+)\\.\\s+/gm, (_, n) => `${n}) `);\n\n  // bullet list -> • ...\n  s = s.replace(/^\\s{0,3}[-*+]\\s+/gm, \"• \");\n\n  // images ![alt](url) -> alt\n  s = s.replace(/!\\[([^\\]]*)\\]\\(([^)]+)\\)/g, \"$1\");\n\n  // links [text](url) -> text\n  s = s.replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g, \"$1\");\n\n  // bold/italic\n  s = s.replace(/(\\*\\*|__)(.*?)\\1/g, \"$2\");\n  s = s.replace(/(\\*|_)(.*?)\\1/g, \"$2\");\n\n  // code blocks & inline code\n  s = s.replace(/```[\\s\\S]*?```/g, m => m.replace(/```/g, \"\").trim());\n  s = s.replace(/`([^`]+)`/g, \"$1\");\n\n  // hr\n  s = s.replace(/^\\s*[-*_]{3,}\\s*$/gm, \"\");\n\n  // trim line-end spaces + collapse blank lines\n  s = s.replace(/[ \\t]+$/gm, \"\");\n  s = s.replace(/\\n{3,}/g, \"\\n\\n\");\n\n  return s.trim();\n}\n\n// ---------- n8n glue ----------\n\n// Helper: แปลง 1 item\nfunction transformItem(item) {\n  // เลือก field ที่จะอ่าน: text | input | output | ทั้ง json\n  const src =\n    item.json.text ??\n    item.json.input ??\n    item.json.output ??\n    \"\"; // fallback\n\n  const plain = mdToPlain(src);\n\n  return {\n    json: {\n      ...item.json,   // เก็บข้อมูลเดิมไว้\n      plain,          // ข้อความที่ถูกแปลง\n      // คุณจะเปลี่ยนชื่อ field เป็นอย่างอื่นก็ได้ เช่น \"clean\"\n    },\n  };\n}\n\n// รองรับทั้งสองโหมดของ Code node\nif ($input.all) {\n  // Run Once for All Items\n  const items = $input.all();\n  return items.map(transformItem);\n} else {\n  // Run Once for Each Item\n  return [transformItem({ json: $json })];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        704
+      ],
+      "id": "38084365-7318-4690-8938-443915207160",
+      "name": "Reformat1"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.photo[2].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        640
+      ],
+      "id": "e6325576-93b8-438c-a334-cf4d0fdc41fe",
+      "name": "Get 4",
+      "webhookId": "b5056dd9-5c6e-4d00-9b25-23a1de5df5cc",
+      "retryOnFail": false,
+      "executeOnce": false,
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.photo[3].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        816
+      ],
+      "id": "92c189f6-dc3c-4b11-ad65-2446317e4b8e",
+      "name": "Get 5",
+      "webhookId": "b5056dd9-5c6e-4d00-9b25-23a1de5df5cc",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9b088c06-fad7-418a-8043-3ac7b5681168",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message.photo[2].file_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "fc392370-44cc-4cef-b99b-d0c20d1a2ba9",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message.photo[3].file_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        16,
+        736
+      ],
+      "id": "2bb1e2a5-b236-4ed7-9294-decbb9e8653e",
+      "name": "Check Image1"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.photo[2].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        144
+      ],
+      "id": "99f96606-8be0-4da2-8a83-17a26622b3d2",
+      "name": "Get ",
+      "webhookId": "b5056dd9-5c6e-4d00-9b25-23a1de5df5cc",
+      "retryOnFail": false,
+      "executeOnce": false,
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.photo[3].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        320
+      ],
+      "id": "b0e862c0-3b3b-49f9-90da-4bd8c5b122a1",
+      "name": "Get 6",
+      "webhookId": "b5056dd9-5c6e-4d00-9b25-23a1de5df5cc",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9b088c06-fad7-418a-8043-3ac7b5681168",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message.photo[2].file_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "fc392370-44cc-4cef-b99b-d0c20d1a2ba9",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message.photo[3].file_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        240
+      ],
+      "id": "cea8af32-080f-45f8-ac93-1a15dd78fc9d",
+      "name": "Check Image"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Telegram Trigger').item.json.message.caption }}",
+        "driveId": {
+          "__rl": true,
+          "value": "1HEvJ5u-FwasMQ47gFiCY5eBtDiVnhIvm",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        944,
+        560
+      ],
+      "id": "6bcad05a-55ad-41bc-b823-ac3d8f0f8512",
+      "name": "Upload Image1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.twitter.com/2/tweets",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth1Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"hi\",\n  \"media\": { \"media_ids\": [\"={{$node['Upload Media'].json.media_id_string}}\"] }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        896,
+        816
+      ],
+      "id": "ae2ac59c-abf9-414e-b586-f603081877db",
+      "name": "HTTP Request1",
+      "credentials": {
+        "oAuth1Api": {
+          "id": "6g9Mt7sgHr4UqHVs",
+          "name": "X kl14"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://upload.twitter.com/1.1/media/upload.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth1Api",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "media",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        656,
+        816
+      ],
+      "id": "6c9759fb-a676-4c0a-bba4-02157f652586",
+      "name": "Upload Media",
+      "credentials": {
+        "twitterOAuth1Api": {
+          "id": "JZLgBQ2mdnpej8YR",
+          "name": "X OAuth account"
+        },
+        "twitterOAuth2Api": {
+          "id": "UxOaIQBuiEjdtAJ0",
+          "name": "Paji X"
+        },
+        "oAuth1Api": {
+          "id": "6g9Mt7sgHr4UqHVs",
+          "name": "X kl14"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "hi",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [
+        704,
+        592
+      ],
+      "id": "fa1f1071-3d48-41c4-9423-31cf5dbdebb0",
+      "name": "Create Tweet",
+      "credentials": {
+        "twitterOAuth2Api": {
+          "id": "82f8RZw3EQtEYCCn",
+          "name": "x kl14_p"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Ok sir, I'm running Gemlogin MT5 workflow.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -496,
+        1120
+      ],
+      "id": "043ec2d6-1350-46fd-8e53-53f2fcab7cd6",
+      "name": "Send a text message1",
+      "webhookId": "c4a4d949-135c-4552-94cb-d04c586034b0",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.gemlogin.io/api/v2/execscript",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"token\": \"aFPfO08a7AwfrJitgROnJQIns9SVg60JYiq6Ad6qzPaRwz1haQD2FC7SivTSPAJg\",\n  \"device_id\": \"657F210AF8D89403096BB6D13B5641FA\",\n  \"profile_id\": \"11\",\n  \"workflow_id\": \"dlBdcYACvKnLPTkOYjti8\",\n  \"parameter\": {},\n  \"soft_id\": \"1\",\n  \"close_browser\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -176,
+        1120
+      ],
+      "id": "e60d2f25-701e-49c6-97a5-76d6e7475ae5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "content": "## Trade MT5",
+        "height": 272,
+        "width": 2096,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        1024
+      ],
+      "id": "64b0ab7a-f31b-4cb1-8385-9284dc96d996",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.gemlogin.io/api/v2/execscript",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"token\": \"aFPfO08a7AwfrJitgROnJQIns9SVg60JYiq6Ad6qzPaRwz1haQD2FC7SivTSPAJg\",\n  \"device_id\": \"657F210AF8D89403096BB6D13B5641FA\",\n  \"profile_id\": [\n    \"11\"\n  ],\n  \"workflow_id\": \"lVq7Yhpt5kJzLUFQCn8FD\",\n  \"parameter\": {\n    \"product_name\": \"dr.master\",\n    \"video_file\": \"/Users/admin/Desktop/Paji/Videoes/TikTokAI01.mov\"\n  },\n  \"soft_id\": \"1\",\n  \"close_browser\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -496,
+        1376
+      ],
+      "id": "bb492284-f4b7-466b-968f-95e1663e81d7",
+      "name": "TikTok Post"
+    },
+    {
+      "parameters": {
+        "content": "## TikTok Post",
+        "height": 272,
+        "width": 2096,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        1296
+      ],
+      "id": "e3566a3a-672c-413c-9c1e-edfd1523c8d6",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Running TikTok Post Workflow",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -176,
+        1376
+      ],
+      "id": "842179d1-0fa4-40a5-a192-edde04e75e76",
+      "name": "Send a text message2",
+      "webhookId": "c4a4d949-135c-4552-94cb-d04c586034b0",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-14T10:31:45.679Z",
+      "updatedAt": "2025-09-14T10:31:45.679Z",
+      "role": "workflow:owner",
+      "workflowId": "nflV6Mikk1fHsmHd",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-09-17T13:24:52.406Z",
+      "updatedAt": "2025-09-17T13:24:52.406Z",
+      "id": "X6jWVcAD31eFxtBz",
+      "name": "Router WF"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-15T09:14:15.000Z",
+  "versionId": "7cb7dbcc-cb48-453f-89b6-582d46bd108c"
+}
