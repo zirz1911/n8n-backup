@@ -1,0 +1,116 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Upload a video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-22T11:00:16.217Z",
+  "id": "GYkBEnxBQUqHZPb7",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Youtube Upload",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0fb162e0-8923-45f8-950f-4905f48bc46d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "https://drive.google.com/file/d/1q6fb6vsL0K5fDD73J0foIZbxWjH7tpbn/view?usp=drive_link",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "361d9f40-8487-45d5-8709-c91acc24fce3",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "upload",
+        "title": "It's Okay",
+        "regionCode": "TH",
+        "categoryId": "1",
+        "options": {
+          "privacyStatus": "private"
+        }
+      },
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "bdc99b56-0e96-49a0-aee4-a36a1f3b2428",
+      "name": "Upload a video",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "xNw09gLXD0PsU1dZ",
+          "name": "YouTube account Paji"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-22T11:00:16.231Z",
+      "updatedAt": "2025-08-22T11:00:16.231Z",
+      "role": "workflow:owner",
+      "workflowId": "GYkBEnxBQUqHZPb7",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-22T13:53:11.000Z",
+  "versionId": "203cfd8e-786f-4ba8-8585-032bda499d7a"
+}
