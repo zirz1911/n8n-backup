@@ -1,0 +1,80 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-14T11:23:32.849Z",
+  "id": "y46XTx9jbklIiwfm",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Test n8n Javix",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "7738519619",
+        "text": "Yo Bro",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -896,
+        64
+      ],
+      "id": "c98d3b1e-8a8b-436a-8810-cbb0fab9141c",
+      "name": "Send a text message",
+      "webhookId": "006582c0-a7d1-449c-900a-4109a579a815",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1104,
+        64
+      ],
+      "id": "4571d877-c770-44b5-8ad2-4b83b0215b34",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-14T11:23:32.857Z",
+      "updatedAt": "2025-09-14T11:23:32.857Z",
+      "role": "workflow:owner",
+      "workflowId": "y46XTx9jbklIiwfm",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-14T11:24:10.000Z",
+  "versionId": "380ef709-41a1-44df-a15a-257215690602"
+}
