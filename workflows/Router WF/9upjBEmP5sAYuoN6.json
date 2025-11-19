@@ -1,0 +1,256 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-17T13:38:34.429Z",
+  "id": "9upjBEmP5sAYuoN6",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Bot Javix.bak",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {},
+        "path": "2f911a4b-d8ab-4881-bda3-5f26bc012c39"
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -864,
+        -672
+      ],
+      "id": "a4456298-ce62-450c-96a2-75bcde8a9d65",
+      "name": "Telegram Trigger",
+      "webhookId": "2f911a4b-d8ab-4881-bda3-5f26bc012c39",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- pick text from message / caption / callback ---\nconst msg = $json.message || $json.edited_message || $json.callback_query?.message;\nconst textRaw =\n  $json.message?.text ??\n  $json.message?.caption ??\n  $json.callback_query?.data ??\n  \"\";\nconst text = String(textRaw).trim();\n\n// parse \"/cmd args\"  หรือ \"cmd args\"\nfunction parseCommand(s) {\n  const m = s.match(/^\\/?([A-Za-z0-9_]+)(?:\\s+(.*))?$/);\n  if (!m) return { cmd: \"fallback\", args: s };\n  return { cmd: m[1].toLowerCase(), args: m[2] || \"\" };\n}\n\nconst { cmd, args } = parseCommand(text);\n\n// === mapping คำสั่ง -> ปลายทาง ===\n// เลือกอย่างใดอย่างหนึ่ง: Execute Workflow โดยชื่อ/ID หรือยิง Webhook\nconst routes = {\n  start: { type: \"exec\", workflowName: \"Welcome Flow\" },\n  help:  { type: \"exec\", workflowName: \"Help Flow\" },\n  status:{ type: \"exec\", workflowName: \"Test n8n\" },\n  gen:   { type: \"webhook\", url: \"https://YOUR_N8N/webhook/GEN_ID?token=XYZ\" },\n  post:  { type: \"webhook\", url: \"https://YOUR_N8N/webhook/GEN_ID?token=XYZ\" },\n  // เพิ่มคำสั่งอื่น ๆ ได้ เช่น: report, image, tiktok, youtube, …\n};\n\nconst key = routes[cmd] ? cmd : \"fallback\";\n\nreturn [{\n  json: {\n    chat_id: msg?.chat?.id,\n    message_id: msg?.message_id ?? $json.callback_query?.message?.message_id,\n    text, cmd, args,\n    route: key,\n    target: routes[key] || null\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -688,
+        -672
+      ],
+      "id": "5e5edc00-3c42-4622-bbec-7ba40fb1b7d9",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "2601dc9f-3dbb-49ee-8238-fe7941a23ab3"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bb9dbf84-e242-49d7-8c49-2dcaa54a120a",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "95796d59-f84b-43e4-bc30-92360327c3a5",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "status",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -496,
+        -688
+      ],
+      "id": "4c62f701-c92e-4efc-ae6d-33b8d81a0c3b",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Hi, What can I help you?",
+        "additionalFields": {
+          "appendAttribution": false
+        },
+        "path": "72763d6d-1db3-4173-a349-bc71570d435d"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -176,
+        -864
+      ],
+      "id": "719cb51a-281b-4cfc-9ae4-7895874b981e",
+      "name": "Send a text message",
+      "webhookId": "72763d6d-1db3-4173-a349-bc71570d435d",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "y46XTx9jbklIiwfm",
+          "mode": "list",
+          "cachedResultName": "Test n8n Javix"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -176,
+        -528
+      ],
+      "id": "79d887b4-fa50-410a-920f-327787000b74",
+      "name": "Execute Workflow"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-17T13:38:34.435Z",
+      "updatedAt": "2025-09-17T13:38:34.435Z",
+      "role": "workflow:owner",
+      "workflowId": "9upjBEmP5sAYuoN6",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-09-17T13:24:52.406Z",
+      "updatedAt": "2025-09-17T13:24:52.406Z",
+      "id": "X6jWVcAD31eFxtBz",
+      "name": "Router WF"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-17T13:38:34.429Z",
+  "versionId": "99686a10-e709-43c6-93b0-95a98edff06a"
+}
