@@ -1,0 +1,70 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-02T08:45:18.077Z",
+  "id": "d2WinVBC2xF8CukM",
+  "isArchived": false,
+  "meta": null,
+  "name": "Gemphone",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e25ca793-cbf1-43eb-873a-090c117dfa30",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.gemlogin.io/api/v2/execscript",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"token\": \"aFPfO08a7AwfrJitgROnJQIns9SVg60JYiq6Ad6qzPaRwz1haQD2FC7SivTSPAJg\",\n  \"workflow_id\": \"Mlwp7MTGzZdAiVYmRzpcm\",\n  \"parameter\": {\n    \"search\": \"Dirty Work\",\n    \"name\": \"(Color Coded Lyrics)\",\n    \"watchtime\": \"60000\"\n  },\n  \"soft_id\": \"1\",\n  \"device_id\": \"emulator-5554\",\n  \"id\": \"478\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "b16570d8-cb97-43f3-90fb-472ed42f6341",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-02T08:45:18.081Z",
+      "updatedAt": "2025-09-02T08:45:18.081Z",
+      "role": "workflow:owner",
+      "workflowId": "d2WinVBC2xF8CukM",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-02T09:03:36.000Z",
+  "versionId": "8012ee34-f81f-4007-99ca-1920b6d5d3e4"
+}
