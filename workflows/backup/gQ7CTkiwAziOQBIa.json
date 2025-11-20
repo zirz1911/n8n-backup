@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "/": {
       "main": [
@@ -839,7 +839,11 @@
       "projectId": "kCWQ90PondCDczpc"
     }
   ],
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [
     {
       "createdAt": "2025-11-19T15:09:09.156Z",
@@ -848,7 +852,7 @@
       "name": "backup"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-11-19T15:50:21.000Z",
+  "triggerCount": 1,
+  "updatedAt": "2025-11-19T16:00:32.000Z",
   "versionId": "d40fd88d-8a60-4eb3-b37c-62a48bbb622b"
 }
