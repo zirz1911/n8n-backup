@@ -1,0 +1,2183 @@
+{
+  "active": false,
+  "connections": {
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Check Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Status": {
+      "main": [
+        [
+          {
+            "node": "Check Title",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Title": {
+      "main": [
+        [
+          {
+            "node": "Check Title and Yaml Match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Title and Yaml Match": {
+      "main": [
+        [
+          {
+            "node": "Gen Video2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gen Video2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gen Video3": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Gen Video3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download Video1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Video1": {
+      "main": [
+        [
+          {
+            "node": "Upload file1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file1": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        []
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChatGPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get a file 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file 2": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Product": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Get VEO3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Download Video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VEO3 Image to video": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get VEO3": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Get VEO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Download Video2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get VEO": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VEO3 Text to Video": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file2": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Video": {
+      "main": [
+        [
+          {
+            "node": "Upload file2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file3": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Video2": {
+      "main": [
+        [
+          {
+            "node": "Upload file3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Check Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Status1": {
+      "main": [
+        [
+          {
+            "node": "Check Title1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Title1": {
+      "main": [
+        [
+          {
+            "node": "Check Title and Yaml Match1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Title and Yaml Match1": {
+      "main": [
+        [
+          {
+            "node": "VEO3 Image to video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Check Status2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Status2": {
+      "main": [
+        [
+          {
+            "node": "Check Title2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Title2": {
+      "main": [
+        [
+          {
+            "node": "Check Title and Yaml Match2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Title and Yaml Match2": {
+      "main": [
+        [
+          {
+            "node": "VEO3 Text to Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-21T15:57:00.982Z",
+  "id": "o0GSrPef6wlRugAj",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Generate Video via VEO3  Save prompt to Sheet",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/veo/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": \"A dog playing in a park\",\n  \"imageUrls\": [\n    \"http://example.com/image1.jpg\",\n    \"http://example.com/image2.jpg\"\n  ],\n  \"model\": \"veo3_fast\",\n  \"watermark\": \"MyBrand\",\n  \"callBackUrl\": \"http://your-callback-url.com/complete\",\n  \"aspectRatio\": \"16:9\",\n  \"seeds\": 12345,\n  \"enableFallback\": false,\n  \"enableTranslation\": true,\n  \"generationType\": \"REFERENCE_2_VIDEO\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1056,
+        880
+      ],
+      "id": "e83abe06-cb1a-4380-a7de-bd9b4fc25081",
+      "name": "Gen Video2",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=0",
+          "__regex": "https:\\/\\/docs\\.google\\.com\\/spreadsheets\\/d\\/[0-9a-zA-Z\\-_]+.*\\#gid=([0-9]+)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        48,
+        1008
+      ],
+      "id": "f335e37f-39a8-452f-8009-c8946f2b6cec",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7d647d8e-2f82-4cec-a828-6a7b288c9a69",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "Pending",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        1008
+      ],
+      "id": "4e73c7f0-ce79-4798-86d1-6f9ed1d7caac",
+      "name": "Check Status"
+    },
+    {
+      "parameters": {
+        "jsCode": "// input: items ที่ Status = Pending\nconst seen = new Set();\nconst out = [];\n\nfor (const item of items) {\n  const title = (item.json.Title || '').trim();\n  if (!title) continue;\n\n  if (seen.has(title)) {\n    // ถ้าเจอชื่อตรงกับตัวที่เคยผ่านแล้ว ก็ข้าม\n    continue;\n  }\n\n  seen.add(title);\n  out.push(item);\n}\n\nreturn out;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        880
+      ],
+      "id": "0b7c6765-aeb6-4cba-ab65-de88749d2e27",
+      "name": "Check Title"
+    },
+    {
+      "parameters": {
+        "jsCode": "const out = [];\n\nfor (const item of items) {\n  const sheetTitle = (item.json.Title || '').trim();\n  const prompt = item.json.Prompt || '';\n\n  // หาบรรทัดที่ขึ้นต้นด้วย title:\n  const m = prompt.match(/^title:\\s*[\"']?(.*?)[\"']?\\s*$/m);\n\n  if (!m) {\n    // ถ้าไม่มี title ใน Prompt ให้ mark flag ไว้ (เดี๋ยวไปอัปเดต Sheet เป็น Error ภายหลัง)\n    item.json._titleCheck = 'missing';\n  } else {\n    const yamlTitle = m[1].trim();\n    item.json._titleFromPrompt = yamlTitle;\n    item.json._titleCheck = (yamlTitle === sheetTitle) ? 'ok' : 'mismatch';\n  }\n\n  out.push(item);\n}\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        880
+      ],
+      "id": "58ca4f87-a00c-4981-a292-0f3ae9e242d7",
+      "name": "Check Title and Yaml Match"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "prompt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $('Check Title and Yaml Match').item.json.Title }}",
+            "Status": "Generated"
+          },
+          "matchingColumns": [
+            "Title"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1712,
+        1152
+      ],
+      "id": "8171f364-c1a3-4bc0-b266-f97af28791eb",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/jobs/recordInfo",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        1136
+      ],
+      "id": "36e776c1-8c06-40bf-af1a-b315f525bc71",
+      "name": "Gen Video3",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        592,
+        1136
+      ],
+      "id": "9aa1b24f-cb96-43fe-9684-3a3118fd15f5",
+      "name": "Wait1",
+      "webhookId": "84bea3b5-35d5-48b5-a1f5-f1d9782fc0a1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "=generating",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "80f66826-1880-480b-810e-5a086031600d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Generating"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa7e806e-9ddf-4886-b344-bf20d7762082",
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "success",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Success"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        1008,
+        1136
+      ],
+      "id": "13eaac0c-495b-4546-87eb-e559dc1d4d3e",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "={{ JSON.parse($json[\"data\"][\"resultJson\"]).resultUrls[0] }}\n",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "90859882-9953-4067-b538-f7b270923159",
+      "name": "Download Video1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1264,
+        1152
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ggNigslrXGYczazwg2NfAGYSulGlb_zb",
+          "mode": "list",
+          "cachedResultName": "Gen-Video",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ggNigslrXGYczazwg2NfAGYSulGlb_zb"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1472,
+        1152
+      ],
+      "id": "d9bb4423-11a1-4383-bd83-cd00187ff183",
+      "name": "Upload file1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1687362037,
+          "mode": "list",
+          "cachedResultName": "product-image",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=1687362037"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        368
+      ],
+      "id": "d798de5a-af63-47ba-afa9-ca81f79ca79e",
+      "name": "Read Product",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1687362037,
+          "mode": "list",
+          "cachedResultName": "product-image",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=1687362037"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Product Name": "={{ $json.name }}",
+            "Link": "={{ $json.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Product Name",
+              "displayName": "Product Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -480,
+        384
+      ],
+      "id": "d914a262-5162-4bdf-81af-e971e7605aeb",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.photo[3].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -912,
+        288
+      ],
+      "id": "1e55e5ac-2d37-4350-9214-5b93db51aacc",
+      "name": "Get a file",
+      "webhookId": "35d7bf60-dd6f-48a3-9452-27c2f8495e66",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Telegram Trigger').item.json.message.caption }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/0/folders/1yugk7KC37DRcqbfD8wUViUIYxeTny6Cy",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -688,
+        384
+      ],
+      "id": "384737db-63dd-4aa1-bb12-2f4a0ff70e52",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1408,
+        384
+      ],
+      "id": "c901dcf9-5896-4fca-903a-f3057ca5bc25",
+      "name": "Telegram Trigger",
+      "webhookId": "764a1525-b610-4518-bf69-8a114c181710",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "prompt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $json.title }}",
+            "Prompt": "={{ $json.yaml }}",
+            "Status": "Pending"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1504,
+        368
+      ],
+      "id": "4ac1242f-1542-4f1c-824f-cc3fc790bdd1",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.video_plans",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        368
+      ],
+      "id": "8ae5ed36-962a-4e80-b433-821461bffb13",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        992,
+        560
+      ],
+      "id": "9984c83d-bc83-4f7b-8736-343a54bff1d8",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        896,
+        560
+      ],
+      "id": "d8ef6465-5a6d-4b72-8c94-6b7f9e01f1d1",
+      "name": "ChatGPT",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=คุณเป็นผู้กำกับคอนเทนต์และผู้สร้างวิดีโอสั้นสำหรับรีวิวสินค้า\n\nเป้าหมาย:\nสร้างแนวคิดวิดีโอ 10 แบบ ที่ถ่ายด้วยมือถือ ดูจริง เป็นธรรมชาติ  \nภาษาไทยทั้งหมด (spoken_words)  \nและต้องเป็นวิดีโอภาพล้วน ไม่มีข้อความบนหน้าจอ  \n(no text on screen, no captions, no subtitles, no stickers)\n\nใช้ข้อมูล YAML ของสินค้าใน {{ $json.content }}\n\n### รูปแบบผลลัพธ์\nตอบกลับเป็น JSON เท่านั้น:\n\n{\n  \"video_plans\": [\n    {\n      \"id\": <1>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    },\n    {\n      \"id\": <2>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    },\n    ...\n    {\n      \"id\": <10>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    }\n  ]\n}\n\nในฟิลด์ `yaml` ให้เป็น YAML เต็มของ plan นั้น เช่น:\n\ntitle: \"<ชื่อคลิป>\"\ntarget_audience: \"<กลุ่ม>\"\nsetting: \"<สถานที่>\"\ncamera_style: \"<สไตล์กล้อง>\"\nmood_tone: \"<โทน>\"\nduration_sec: <ระยะเวลา>\ninclude_text_overlays: false\nscript_lines:\n  - scene: 1\n    camera_action: \"<...>\"\n    visual_focus: \"<...>\"\n    spoken_words: \"<คำพูดไทย>\"\n  - scene: 2\n    camera_action: \"<...>\"\n    visual_focus: \"<...>\"\n    spoken_words: \"<...>\"\nmusic_suggestion: \"<แนวดนตรี>\"\nt2v_prompt: >\n  <บรรยายภาพรวมซีนเป็นภาษาอังกฤษ>\n  no text on screen, no captions, no stickers\n\nกฎ:\n- ไม่มี markdown ไม่มี ``` ใน output\n- YAML ต้องเป็น string (ใช้ \\n สำหรับขึ้นบรรทัด)\n- ต้องมี video_plans ทั้ง 10 อัน\n- ต้องมี id 1–10 ครบ\n\nในผลลัพธ์ JSON แต่ละอันของ video_plans:\n- ให้มี field \"id\" (1–10)\n- ให้มี field \"title\" เป็นข้อความภาษาไทย\n- ให้มี field \"yaml\" ที่เป็น YAML string ของแผนนั้น\n- ห้ามซ้ำกัน\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        368
+      ],
+      "id": "087aad26-ec5b-46b2-87f4-1fe45709a7ee",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "=You are an AI product analyst.\n\nAnalyze the given product image carefully and describe all visible details.\n\nReturn the result **strictly in YAML format**, with the following structure:\n\nproduct:\n  name: <short name of the product based on the image>\n  category: <product type or category, e.g. smartphone, shoes, cosmetics, drink>\n  description: <short descriptive summary, 1–2 sentences, describing look, style, and materials>\n  color: <main visible color(s)>\n  shape: <main shape or form factor>\n  packaging: <describe packaging or container if visible>\n  brand_logo_text: <text or brand name visible, or null if none>\n  estimated_price_range: <rough guess in USD or THB>\n  aesthetic_style: <describe style: modern, minimal, luxury, eco, cute, etc.>\n  background_context: <describe the background or scene: white studio, outdoor, table, etc.>\n  potential_uses:\n    - <use case 1>\n    - <use case 2>\n    - <use case 3>\n  marketing_caption: <short catchy caption suitable for ad or TikTok description>\n\nOutput example:\n```yaml\nproduct:\n  name: \"Wireless Bluetooth Speaker\"\n  category: \"Electronics\"\n  description: \"A small cylindrical Bluetooth speaker with fabric texture and metallic rim.\"\n  color: \"Black with silver edges\"\n  shape: \"Cylinder\"\n  packaging: \"No packaging visible\"\n  brand_logo_text: \"SONY\"\n  estimated_price_range: \"50–80 USD\"\n  aesthetic_style: \"Modern and minimal\"\n  background_context: \"White background studio lighting\"\n  potential_uses:\n    - \"Listening to music outdoors\"\n    - \"Watching movies with better sound\"\n    - \"Decor for home workspace\"\n  marketing_caption: \"Feel the beat anywhere — compact power in your palm.\"\n",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        656,
+        368
+      ],
+      "id": "01f9b56b-9368-4c71-926a-cc558c64bdd4",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "BAxnWWpI6AR1hxUS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6a7ec158-e043-4b81-ace6-007ff996c60e",
+              "leftValue": "={{ $json.message.photo[3] }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1152,
+        384
+      ],
+      "id": "9940aed8-0a8b-46b4-b8b6-08e54e33613b",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.photo[2].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -912,
+        464
+      ],
+      "id": "da063ecd-b58f-47aa-808e-cff6665cc84b",
+      "name": "Get a file 2",
+      "webhookId": "b589382d-9bea-4e41-bdb4-f930f5e4b47b",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n  \"type\": \"object\",\n  \"properties\": {\n    \"video_plans\": {\n      \"type\": \"array\",\n      \"minItems\": 10,\n      \"maxItems\": 10,\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"id\": { \"type\": \"integer\" },\n          \"title\": { \"type\": \"string\" },\n          \"yaml\": { \"type\": \"string\" }\n        },\n        \"required\": [\"id\", \"title\", \"yaml\"]\n      }\n    }\n  },\n  \"required\": [\"video_plans\"]\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1088,
+        560
+      ],
+      "id": "53a872fd-f926-4c7c-acfa-29a219bdcc2e",
+      "name": "Structured"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.Link }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        432,
+        368
+      ],
+      "id": "a30bd978-11a8-44db-b047-4ffee772e1e2",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2320,
+        1632
+      ],
+      "id": "09be30ce-8eee-452c-8a8a-185f864cc154",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "content": "## Upload Image to Google Drive\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/sticky-notes/)",
+        "height": 512,
+        "width": 1344,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1456,
+        256
+      ],
+      "id": "3a028008-1459-4d33-862e-94393081d656",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Generate prompt\n**สร้าง Prompt ออกมา 10 ชุด ต่อภาพสินค้า 1 ภาพ",
+        "height": 512,
+        "width": 2112,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        256
+      ],
+      "id": "2c35e4d4-261d-4352-a923-5bae165aeb9e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Generate Video\n**เจนวิดีโอจากการอ่าน Sheet แล้วเช็คสถาะนะว่าเจนไปแล้วหรือยัง Prompt ไหนยังไม่เจนจะทำการยิง Request ไปเจนวิดีโอทันที",
+        "height": 624,
+        "width": 2112,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        768
+      ],
+      "id": "a777ea5a-4c94-45b2-8c74-660b1bd1a90d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -848,
+        1616
+      ],
+      "id": "5465a149-b9fb-4626-bdf6-85a961000622",
+      "name": "Wait",
+      "webhookId": "84bea3b5-35d5-48b5-a1f5-f1d9782fc0a1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.response.resultUrls[0] }}",
+                    "rightValue": "=generating",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "80f66826-1880-480b-810e-5a086031600d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Success"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa7e806e-9ddf-4886-b344-bf20d7762082",
+                    "leftValue": "={{ $json.data.response.resultUrls[0] }}",
+                    "rightValue": "success",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Generating"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -432,
+        1616
+      ],
+      "id": "9b6a3940-ce75-482a-ad64-1bc169a4d18e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "={{ $json.data.response.resultUrls[0] }}\n",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "a1a0a65f-ddbe-4a68-ac6a-ad9e77e5c783",
+      "name": "Download Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        1616
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/veo/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": \"{{ $json.Prompt }}\",\n  \"imageUrls\": [\n    \"{{ $json.Start }}\",\n    \"{{ $json.End }}\"\n  ],\n  \"model\": \"veo3_fast\",\n  \"watermark\": \"\",\n  \"callBackUrl\": \"http://your-callback-url.com/complete\",\n  \"aspectRatio\": \"9:16\",\n  \"seeds\": 12345,\n  \"enableFallback\": false,\n  \"enableTranslation\": true,\n  \"generationType\": \"FIRST_AND_LAST_FRAMES_2_VIDEO\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1136,
+        1616
+      ],
+      "id": "edd2e3d8-866a-440d-9bf8-2e763db069f5",
+      "name": "VEO3 Image to video",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/veo/record-info",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -640,
+        1616
+      ],
+      "id": "8c98b0b1-b7e7-4b9b-aeca-5bf7cc6a62e6",
+      "name": "Get VEO3",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -848,
+        1904
+      ],
+      "id": "ede8ef6d-3491-4076-8963-3881e74295b5",
+      "name": "Wait2",
+      "webhookId": "84bea3b5-35d5-48b5-a1f5-f1d9782fc0a1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.response.resultUrls[0] }}",
+                    "rightValue": "=generating",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "80f66826-1880-480b-810e-5a086031600d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Success"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "aa7e806e-9ddf-4886-b344-bf20d7762082",
+                    "leftValue": "={{ $json.data.response.resultUrls[0] }}",
+                    "rightValue": "success",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Generating"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -432,
+        1904
+      ],
+      "id": "0e92727d-c965-4bd6-8ad6-970020eb6889",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "={{ $json.data.response.resultUrls[0] }}\n",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "96ede6b8-9da8-4e43-aee7-e62ee893aed4",
+      "name": "Download Video2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        1904
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/veo/record-info",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -640,
+        1904
+      ],
+      "id": "dfdf37bb-f5f9-4ff9-8ca3-a15324684a7e",
+      "name": "Get VEO",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/veo/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"prompt\": \"A girl dog playing in a park and saying 'เก่งที่สุดเลยลูก'\",\n  \"model\": \"veo3_fast\",\n  \"watermark\": \"MyBrand\",\n  \"callBackUrl\": \"http://your-callback-url.com/complete\",\n  \"aspectRatio\": \"9:16\",\n  \"seeds\": 12345,\n  \"enableFallback\": false,\n  \"enableTranslation\": true,\n  \"generationType\": \"TEXT_2_VIDEO\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1136,
+        1904
+      ],
+      "id": "a5e38bb7-a682-4f96-93a5-96ad32e35894",
+      "name": "VEO3 Text to Video",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 35382777,
+          "mode": "list",
+          "cachedResultName": "สำเนาของ prompt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=35382777"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $('Check Title and Yaml Match1').item.json.Title }}",
+            "Status": "Generated"
+          },
+          "matchingColumns": [
+            "Title"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Start",
+              "displayName": "Start",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "End",
+              "displayName": "End",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        304,
+        1616
+      ],
+      "id": "8b957a06-1bea-4bf3-b9c9-28acf6d68f26",
+      "name": "Update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ggNigslrXGYczazwg2NfAGYSulGlb_zb",
+          "mode": "list",
+          "cachedResultName": "Gen-Video",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ggNigslrXGYczazwg2NfAGYSulGlb_zb"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        64,
+        1616
+      ],
+      "id": "8653d2fc-c7b5-4588-9f94-c709a57be6f8",
+      "name": "Upload file2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "prompt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $('Check Title and Yaml Match').item.json.Title }}",
+            "Status": "Generated"
+          },
+          "matchingColumns": [
+            "Title"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        288,
+        1904
+      ],
+      "id": "2c57ada5-6afd-4752-828b-e23e6c50ea66",
+      "name": "Update row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ggNigslrXGYczazwg2NfAGYSulGlb_zb",
+          "mode": "list",
+          "cachedResultName": "Gen-Video",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ggNigslrXGYczazwg2NfAGYSulGlb_zb"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        48,
+        1904
+      ],
+      "id": "469df13d-2bb8-44f2-b335-1e3a6db996d8",
+      "name": "Upload file3",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "koHJXYYbgj3Wz6At",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 35382777,
+          "mode": "list",
+          "cachedResultName": "สำเนาของ prompt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=35382777"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2096,
+        1632
+      ],
+      "id": "74aca6bb-dd30-4d50-a45b-7a0c72c2a4f6",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7d647d8e-2f82-4cec-a828-6a7b288c9a69",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "Pending",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1888,
+        1632
+      ],
+      "id": "eb536fab-6d97-420d-a1fd-fab81a17ef56",
+      "name": "Check Status1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// input: items ที่ Status = Pending\nconst seen = new Set();\nconst out = [];\n\nfor (const item of items) {\n  const title = (item.json.Title || '').trim();\n  if (!title) continue;\n\n  if (seen.has(title)) {\n    // ถ้าเจอชื่อตรงกับตัวที่เคยผ่านแล้ว ก็ข้าม\n    continue;\n  }\n\n  seen.add(title);\n  out.push(item);\n}\n\nreturn out;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1616,
+        1616
+      ],
+      "id": "3f94bb51-a5f0-4770-a6e0-1c50ad23af4f",
+      "name": "Check Title1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const out = [];\n\nfor (const item of items) {\n  const sheetTitle = (item.json.Title || '').trim();\n  const prompt = item.json.Prompt || '';\n\n  // หาบรรทัดที่ขึ้นต้นด้วย title:\n  const m = prompt.match(/^title:\\s*[\"']?(.*?)[\"']?\\s*$/m);\n\n  if (!m) {\n    // ถ้าไม่มี title ใน Prompt ให้ mark flag ไว้ (เดี๋ยวไปอัปเดต Sheet เป็น Error ภายหลัง)\n    item.json._titleCheck = 'missing';\n  } else {\n    const yamlTitle = m[1].trim();\n    item.json._titleFromPrompt = yamlTitle;\n    item.json._titleCheck = (yamlTitle === sheetTitle) ? 'ok' : 'mismatch';\n  }\n\n  out.push(item);\n}\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1392,
+        1616
+      ],
+      "id": "eda6bc8e-ea54-4647-b3d3-0906c0656d31",
+      "name": "Check Title and Yaml Match1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=0",
+          "__regex": "https:\\/\\/docs\\.google\\.com\\/spreadsheets\\/d\\/[0-9a-zA-Z\\-_]+.*\\#gid=([0-9]+)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2096,
+        1920
+      ],
+      "id": "cc62e5a9-ef9a-4da8-9b0c-debf1d41c416",
+      "name": "Get row(s) in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7d647d8e-2f82-4cec-a828-6a7b288c9a69",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "Pending",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1888,
+        1920
+      ],
+      "id": "c8d6650b-a1bc-4ffb-af7b-419213568124",
+      "name": "Check Status2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// input: items ที่ Status = Pending\nconst seen = new Set();\nconst out = [];\n\nfor (const item of items) {\n  const title = (item.json.Title || '').trim();\n  if (!title) continue;\n\n  if (seen.has(title)) {\n    // ถ้าเจอชื่อตรงกับตัวที่เคยผ่านแล้ว ก็ข้าม\n    continue;\n  }\n\n  seen.add(title);\n  out.push(item);\n}\n\nreturn out;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1616,
+        1904
+      ],
+      "id": "e13f40c1-0f0a-4045-8dbc-55b232c999dc",
+      "name": "Check Title2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const out = [];\n\nfor (const item of items) {\n  const sheetTitle = (item.json.Title || '').trim();\n  const prompt = item.json.Prompt || '';\n\n  // หาบรรทัดที่ขึ้นต้นด้วย title:\n  const m = prompt.match(/^title:\\s*[\"']?(.*?)[\"']?\\s*$/m);\n\n  if (!m) {\n    // ถ้าไม่มี title ใน Prompt ให้ mark flag ไว้ (เดี๋ยวไปอัปเดต Sheet เป็น Error ภายหลัง)\n    item.json._titleCheck = 'missing';\n  } else {\n    const yamlTitle = m[1].trim();\n    item.json._titleFromPrompt = yamlTitle;\n    item.json._titleCheck = (yamlTitle === sheetTitle) ? 'ok' : 'mismatch';\n  }\n\n  out.push(item);\n}\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1392,
+        1904
+      ],
+      "id": "d87e4288-9321-4808-b932-afa4f9364744",
+      "name": "Check Title and Yaml Match2"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-21T15:57:00.988Z",
+      "updatedAt": "2025-11-21T15:57:00.988Z",
+      "role": "workflow:owner",
+      "workflowId": "o0GSrPef6wlRugAj",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-21T17:03:49.000Z",
+  "versionId": "d7fb8677-3faf-436a-91f8-6db14e0943a2"
+}
