@@ -828,7 +828,10 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Asia/Bangkok",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
   "shared": [
     {
@@ -853,6 +856,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-21T15:56:34.000Z",
-  "versionId": "d40fd88d-8a60-4eb3-b37c-62a48bbb622b"
+  "updatedAt": "2025-11-23T12:17:09.000Z",
+  "versionId": "929a600c-fdfe-4149-a404-f87fba91999d"
 }
