@@ -1,0 +1,292 @@
+{
+  "active": false,
+  "connections": {
+    "Gen Cover": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Get Cover",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Cover": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Download Cover",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Gen Cover",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-22T13:34:10.329Z",
+  "id": "IDWGK5UpIdcG7vw6",
+  "isArchived": false,
+  "meta": null,
+  "name": "Gen Image on Nano Banana Pro",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        144
+      ],
+      "id": "3e65c8dd-92ba-48a4-a59d-859290565e06",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"google/nano-banana\",\n  \"callBackUrl\": \"https://your-domain.com/api/callback\",\n  \"input\": {\n    \"prompt\": \"{{ $json.Prompt }}\",\n      \"output_format\": \"png\",\n      \"image_size\": \"16:9\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        144,
+        144
+      ],
+      "id": "c9f90ec4-6159-4929-b7a2-eb5598e72690",
+      "name": "Gen Cover",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        352,
+        144
+      ],
+      "id": "ceaf2d9a-1c6b-470f-9412-eca0e8a725df",
+      "name": "Wait",
+      "webhookId": "0635a5ff-f11c-4036-bff6-c29bb316eaaa"
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/jobs/recordInfo",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        560,
+        144
+      ],
+      "id": "0abcaac7-1685-4db0-ae0b-fba9013ca303",
+      "name": "Get Cover",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "success",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "aff82431-dbbb-4e86-8ebb-4853cff48d5d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Success"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3cd92391-0d5d-49b4-a7c7-58b508517ca1",
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "waiting",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Waiting"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ccd67fdd-6cc6-4e5b-82f3-5cef11682bd4",
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "generating",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Generating"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        768,
+        144
+      ],
+      "id": "ba72a47f-89b2-448a-9f12-6742daeed88e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "={{ JSON.parse($('Get Cover').item.json.data.resultJson).resultUrls[0] }}\n",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "95c5692e-ba4f-4d8f-bf77-ae5cf17fe661",
+      "name": "Download Cover",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        128
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qz2RJuVUJ9aWcviO",
+          "name": "sora"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-22T13:34:10.335Z",
+      "updatedAt": "2025-11-22T13:34:10.335Z",
+      "role": "workflow:owner",
+      "workflowId": "IDWGK5UpIdcG7vw6",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-22T16:20:50.000Z",
+  "versionId": "8c6423f4-7586-4969-96f7-074940656a40"
+}
