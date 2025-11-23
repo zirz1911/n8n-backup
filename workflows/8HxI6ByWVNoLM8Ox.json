@@ -1183,13 +1183,13 @@
       "parameters": {
         "content": "## Generate Video\n**เจนวิดีโอจากการอ่าน Sheet แล้วเช็คสถาะนะว่าเจนไปแล้วหรือยัง Prompt ไหนยังไม่เจนจะทำการยิง Request ไปเจนวิดีโอทันที",
         "height": 736,
-        "width": 2112,
+        "width": 2448,
         "color": 3
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -112,
+        -448,
         768
       ],
       "id": "bc6cda99-56f0-4e29-b127-099e7d217a9f",
@@ -1301,6 +1301,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-23T11:51:23.000Z",
-  "versionId": "7e915030-4298-450c-806f-aae2fd8c3bfd"
+  "updatedAt": "2025-11-23T12:16:43.000Z",
+  "versionId": "8fae4357-c435-4ac3-ae3d-1895ea77b862"
 }
