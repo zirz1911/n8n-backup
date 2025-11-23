@@ -93,6 +93,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Update Fail",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -266,7 +273,7 @@
       "main": [
         [
           {
-            "node": "Read Product",
+            "node": "Get row(s) in sheet",
             "type": "main",
             "index": 0
           }
@@ -301,7 +308,7 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"model\": \"sora-2-text-to-video\",\n  \"input\": {\n    \"prompt\": {{ JSON.stringify( ($json.Prompt || '').toString().replace(/```yaml|```/g, '').trim() ) }},\n    \"aspect_ratio\": \"portrait\",\n    \"n_frames\": \"10\",\n    \"remove_watermark\": true\n  }\n}",
+        "jsonBody": "={\n  \"model\": \"sora-2-text-to-video\",\n  \"input\": {\n    \"prompt\": {{ JSON.stringify( ($json.Prompt || '').toString().replace(/```yaml|```/g, '').trim() ) }},\n    \"aspect_ratio\": \"portrait\",\n    \"n_frames\": \"15\",\n    \"remove_watermark\": true\n  }\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -594,6 +601,31 @@
               },
               "renameOutput": true,
               "outputKey": "Success"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "58b62155-2dbc-42fc-b5b6-c0ac2d364506",
+                    "leftValue": "={{ $json.data.state }}",
+                    "rightValue": "fail",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Fail"
             }
           ]
         },
@@ -967,7 +999,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=คุณเป็นผู้กำกับคอนเทนต์และผู้สร้างวิดีโอสั้นสำหรับรีวิวสินค้า\n\nเป้าหมาย:\nสร้างแนวคิดวิดีโอ 10 แบบ ที่ถ่ายด้วยมือถือ ดูจริง เป็นธรรมชาติ  \nภาษาไทยทั้งหมด (spoken_words)  \nและต้องเป็นวิดีโอภาพล้วน ไม่มีข้อความบนหน้าจอ  \n(no text on screen, no captions, no subtitles, no stickers)\n\nใช้ข้อมูล YAML ของสินค้าใน {{ $json.content }}\n\n### รูปแบบผลลัพธ์\nตอบกลับเป็น JSON เท่านั้น:\n\n{\n  \"video_plans\": [\n    {\n      \"id\": <1>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    },\n    {\n      \"id\": <2>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    },\n    ...\n    {\n      \"id\": <10>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    }\n  ]\n}\n\nในฟิลด์ `yaml` ให้เป็น YAML เต็มของ plan นั้น เช่น:\n\ntitle: \"<ชื่อคลิป>\"\ntarget_audience: \"<กลุ่ม>\"\nsetting: \"<สถานที่>\"\ncamera_style: \"<สไตล์กล้อง>\"\nmood_tone: \"<โทน>\"\nduration_sec: <ระยะเวลา>\ninclude_text_overlays: false\nscript_lines:\n  - scene: 1\n    camera_action: \"<...>\"\n    visual_focus: \"<...>\"\n    spoken_words: \"<คำพูดไทย>\"\n  - scene: 2\n    camera_action: \"<...>\"\n    visual_focus: \"<...>\"\n    spoken_words: \"<...>\"\nmusic_suggestion: \"<แนวดนตรี>\"\nt2v_prompt: >\n  <บรรยายภาพรวมซีนเป็นภาษาอังกฤษ>\n  no text on screen, no captions, no stickers\n\nกฎ:\n- ไม่มี markdown ไม่มี ``` ใน output\n- YAML ต้องเป็น string (ใช้ \\n สำหรับขึ้นบรรทัด)\n- ต้องมี video_plans ทั้ง 10 อัน\n- ต้องมี id 1–10 ครบ\n\nในผลลัพธ์ JSON แต่ละอันของ video_plans:\n- ให้มี field \"id\" (1–10)\n- ให้มี field \"title\" เป็นข้อความภาษาไทย\n- ให้มี field \"yaml\" ที่เป็น YAML string ของแผนนั้น\n- ห้ามซ้ำกัน\n",
+        "text": "=คุณเป็นผู้กำกับคอนเทนต์และผู้สร้างวิดีโอสั้นสำหรับรีวิวสินค้า\n\nเป้าหมาย:\nสร้างแนวคิดวิดีโอ 10 แบบ ที่ถ่ายด้วยมือถือ ดูจริง เป็นธรรมชาติ  \nภาษาไทยทั้งหมด (spoken_words)  \nและต้องเป็นวิดีโอภาพล้วน ไม่มีข้อความบนหน้าจอ  \n(no text on screen, no captions, no subtitles, no stickers)\n\nใช้ข้อมูล YAML ของสินค้าใน {{ $json.content }}\n\n### รูปแบบผลลัพธ์\nตอบกลับเป็น JSON เท่านั้น:\n\n{\n  \"video_plans\": [\n    {\n      \"id\": <1>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    },\n    {\n      \"id\": <2>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    },\n    ...\n    {\n      \"id\": <10>,\n      \"yaml\": \"<YAML string ของแผนวิดีโอ>\"\n    }\n  ]\n}\n\nในฟิลด์ `yaml` ให้เป็น YAML เต็มของ plan นั้น เช่น:\n\ntitle: \"<ชื่อคลิป>\"\ntarget_audience: \"<กลุ่ม>\"\nsetting: \"<สถานที่>\"\ncamera_style: \"<สไตล์กล้อง>\"\ncamero: \"<Character ของเรา>\"\nmood_tone: \"<โทน>\"\nduration_sec: <ระยะเวลา>\ninclude_text_overlays: false\nscript_lines:\n  - scene: 1\n    camera_action: \"<...>\"\n    visual_focus: \"<...>\"\n    spoken_words: \"<คำพูดไทย>\"\n  - scene: 2\n    camera_action: \"<...>\"\n    visual_focus: \"<...>\"\n    spoken_words: \"<...>\"\nmusic_suggestion: \"<แนวดนตรี>\"\nt2v_prompt: >\n  <บรรยายภาพรวมซีนเป็นภาษาอังกฤษ>\n  no text on screen, no captions, no stickers\n\nกฎ:\n- ไม่มี markdown ไม่มี ``` ใน output\n- YAML ต้องเป็น string (ใช้ \\n สำหรับขึ้นบรรทัด)\n- ต้องมี video_plans ทั้ง 10 อัน\n- ต้องมี id 1–10 ครบ\n\nในผลลัพธ์ JSON แต่ละอันของ video_plans:\n- ให้มี field \"id\" (1–10)\n- ให้มี field \"title\" เป็นข้อความภาษาไทย\n- ให้มี field \"yaml\" ที่เป็น YAML string ของแผนนั้น\n- ห้ามซ้ำกัน\n",
         "hasOutputParser": true,
         "options": {}
       },
@@ -1109,8 +1141,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        32,
-        368
+        -336,
+        992
       ],
       "id": "5ada559d-1ad9-42fd-86be-8df57044c8f5",
       "name": "When clicking ‘Execute workflow’"
@@ -1150,7 +1182,7 @@
     {
       "parameters": {
         "content": "## Generate Video\n**เจนวิดีโอจากการอ่าน Sheet แล้วเช็คสถาะนะว่าเจนไปแล้วหรือยัง Prompt ไหนยังไม่เจนจะทำการยิง Request ไปเจนวิดีโอทันที",
-        "height": 624,
+        "height": 736,
         "width": 2112,
         "color": 3
       },
@@ -1162,6 +1194,95 @@
       ],
       "id": "bc6cda99-56f0-4e29-b127-099e7d217a9f",
       "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o",
+          "mode": "list",
+          "cachedResultName": "Video Prompt",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "prompt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gR3ePMb4xxfJFnxdqzKDsM0wQgVjzoI0kwNyS0vfc_o/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $('Check Title and Yaml Match').item.json.Title }}",
+            "Status": "Fail"
+          },
+          "matchingColumns": [
+            "Title"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1264,
+        1328
+      ],
+      "id": "fd1f7b6d-7629-400e-b112-a27769d8c684",
+      "name": "Update Fail",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3M7pzlgCFWRAu9ON",
+          "name": "Google Sheets account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1180,6 +1301,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-19T10:56:09.000Z",
-  "versionId": "3c4bd124-fb5f-4a50-873e-999f60d18ef1"
+  "updatedAt": "2025-11-23T11:51:23.000Z",
+  "versionId": "7e915030-4298-450c-806f-aae2fd8c3bfd"
 }
