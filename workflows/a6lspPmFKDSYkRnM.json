@@ -1898,7 +1898,7 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.3,
       "position": [
-        -3520,
+        -3392,
         -960
       ],
       "id": "f690ce0f-2652-4b01-b16f-692786daaec0",
@@ -2227,6 +2227,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-23T10:32:21.000Z",
-  "versionId": "a68c1287-a2a2-4b76-8752-f3e5ad17dee4"
+  "updatedAt": "2025-11-23T12:51:21.000Z",
+  "versionId": "ee794e9d-e00a-42ad-9baf-f0610476bf3e"
 }
