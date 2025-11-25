@@ -1,0 +1,120 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "โพสครับพี่",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-24T12:21:50.326Z",
+  "id": "XhaHheFeEhbw0QbT",
+  "isArchived": false,
+  "meta": null,
+  "name": "Post Music to Youtube Cozy J.",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -512,
+        48
+      ],
+      "id": "6a4ddbd9-d8b5-4710-81d7-6a466778d850",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.gemlogin.io/api/v2/execscript",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"token\": \"aFPfO08a7AwfrJitgROnJQIns9SVg60JYiq6Ad6qzPaRwz1haQD2FC7SivTSPAJg\",\n  \"device_id\": \"657F210AF8D89403096BB6D13B5641FA\",\n  \"profile_id\": [\n    \"11\"\n  ],\n  \"workflow_id\": \"9KnwIwebwVUGYP8hy5qB4\",\n  \"parameter\": {\n    \"video_folder\": \"/Users/admin/Documents/Suno GPT/Merge/Persong\",\n    \"cover_folder\": \"/Users/admin/Documents/Suno GPT\",\n    \"gpt_api\": \"\"\n  },\n  \"soft_id\": \"1\",\n  \"close_browser\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -304,
+        48
+      ],
+      "id": "e6dedd30-5325-4001-a507-2dc8ada36453",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "chatId": "=7738519619",
+        "text": "Run workflow Youtube Upload on Gemlogin",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -80,
+        48
+      ],
+      "id": "c19b6c57-132c-4f2a-ba45-2fe07634f6b4",
+      "name": "โพสครับพี่",
+      "webhookId": "26ed105e-8d91-4274-9f19-666202c34eea",
+      "credentials": {
+        "telegramApi": {
+          "id": "e3xOoryWmJN535U2",
+          "name": "Jaivxx"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Bangkok",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-24T12:21:50.335Z",
+      "updatedAt": "2025-11-24T12:21:50.335Z",
+      "role": "workflow:owner",
+      "workflowId": "XhaHheFeEhbw0QbT",
+      "projectId": "kCWQ90PondCDczpc"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-25T08:32:17.000Z",
+  "versionId": "e82963cb-0487-4c23-8739-d656a48f9efe"
+}
